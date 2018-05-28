@@ -18,18 +18,18 @@
 
 export default {
   name: 'auth',
-  components: {},
-  data: function data() {
+  props: {
+    subtitle: 'Benutzerkonto anlegen',
+    footer: 'Bereits registiert?',
+    url: 'login',
+    cta: 'Anmelden',
+  },
+  data() {
     return {
-      subtitle: 'Benutzerkonto anlegen',
-      footer: 'Bereits registiert?',
-      url: 'login',
-      cta: 'Anmelden',
+      path: this.$route.path,
     };
   },
 };
-
-console.log(this);
 
 </script>
 
