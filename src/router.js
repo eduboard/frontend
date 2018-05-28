@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Landing from './views/Landing.vue';
 import About from './views/About.vue';
-import Login from './views/Login.vue';
-import Register from './views/Register.vue';
+import Auth from './views/Auth.vue';
 import Dashboard from './views/Dashboard.vue';
+import Landing from './views/Landing.vue';
 
 Vue.use(Router);
 
@@ -23,12 +22,15 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login,
+      component: Auth,
     },
     {
       path: '/register',
       name: 'register',
-      component: Register,
+      component: Auth,
+      data: {
+        route: 'register',
+      },
     },
     {
       path: '/dashboard',
