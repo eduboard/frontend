@@ -1,7 +1,13 @@
+<!-- This is a wrapper for the Auth component -->
 <template>
-  <div class="about">
-    <h1>This is the login page</h1>
-  </div>
+  <Auth
+    action="register"
+    subtitle="Willkommen zurück"
+    bottom="Bereits registriert?"
+    cta="Anmelden"
+    otherUrl="login"
+    button="Registrieren"
+  ></Auth>
 </template>
 
 <script>
