@@ -92,6 +92,7 @@ export default {
 <style lang="scss" scoped>
 
   .auth {
+    text-align: center;
     font-weight: 700 !important;
     text-decoration: none;
   }
