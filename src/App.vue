@@ -26,7 +26,4 @@ html {
 }
 </style>
 
-<script>
-
-
-</script>
+<script></script>

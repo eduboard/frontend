@@ -21,8 +21,8 @@
 
           <nav class="controls__navigation">
             <ul>
-              <li class="controls__navigation__item"><a href="">Profil</a></li>
-              <li class="controls__navigation__item"><a href="">Logout</a></li>
+              <li class="controls__navigation__item"><a @click="profile()">Profil</a></li>
+              <li class="controls__navigation__item"><a @click="logout()">Logout</a></li>
             </ul>
           </nav>
         </div>
@@ -136,6 +136,41 @@
 <script>
 export default {
   name: 'dashboard',
+  methods: {
+    logout() {
+      console.log('Logged out');
+      this.request('POST', '/api/v1/logout', (res) => {
+        console.log(res);
+        setTimeout(() => {
+          this.$router.push('/');
+        }, 500);
+      });
+    },
+    profile() {
+      console.log('Clicked profile');
+    },
+    request(method, url, callback, body) {
+      const req = new XMLHttpRequest();
+      req.onreadystatechange = function onResponse() {
+        // If a JSON response
+        if (this.readyState === 4 && req.responseText[0] === '{') {
+          callback(JSON.parse(req.responseText));
+        // If not a JSON response
+        } else if (this.readyState === 4) {
+          callback({
+            success: false,
+            status: this.status,
+            msg: req.responseText,
+          });
+        }
+      };
+      req.open(method, url, true);
+      if (typeof body !== 'undefined') {
+        req.setRequestHeader('Content-Type', 'application/json');
+      }
+      req.send(body);
+    },
+  },
 };
 </script>
 
