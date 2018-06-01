@@ -55,9 +55,11 @@ export default {
   methods: {
     // Sendet den Request zum server
     sendFormDataToServer() {
-      console.log(`(Not yet) sending post to /api/${this.action}`);
-      this.request('GET', '/', (res) => {
+      this.request('POST', `/api/v1/${this.action}`, (res) => {
         console.log(res);
+        setTimeout(() => {
+          this.$router.push('/dashboard');
+        }, 500);
       });
     },
     /*
@@ -76,12 +78,13 @@ export default {
           callback({
             success: false,
             status: this.status,
+            msg: req.responseText,
           });
         }
       };
       req.open(method, url, true);
       if (typeof body !== 'undefined') {
-        req.setreqHeader('Content-Type', 'application/json');
+        req.setRequestHeader('Content-Type', 'application/json');
       }
       req.send(body);
     },
