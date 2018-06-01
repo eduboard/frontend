@@ -1,35 +1,72 @@
 <template>
   <div class="container auth">
-    <h1>eduBoard</h1>
-    <h2>{{subtitle}}</h2>
-
-    <form action="POST">
-
-      <div class="form__item">
-        <span class="form__text">E-Mail-Adresse</span>
-        <input class="form__input" type="email" placeholder="mail@example.com">
+    <div class="row top-buffer">
+      <div class="col-md-6 offset-md-3 text-center">
+        <h1>eduBoard</h1>
+        <h2>{{subtitle}}</h2>
       </div>
-      <div class="form__item">
-        <span class="form__text">Passwort</span>
-        <input class="form__input" type="password" placeholder="•••••••••">
-      </div>
-      <div class="form__item" v-if="action === 'register'">
-        <span class="form__text">Passwort wiederholen</span>
-        <input class="form__input" type="password" placeholder="•••••••••">
-      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-6 offset-md-3 text-left">
+        <b-form action="POST">
+          <div class="form-group form__item">
+            <label class="form__text" for="emailInput">
+              E-Mail-Adresse
+            </label>
+            <input class="form-control form__input"
+                   type="email"
+                   placeholder="mail@beispiel.de"
+                   id="emailInput">
+          </div>
+          <div class="form-group form__item">
+            <label class="form__text" for="passwordInput">
+              Passwort
+            </label>
+            <input class="form-control form__input"
+                   type="password"
+                   placeholder="•••••••••"
+                   id="passwordInput">
+          </div>
+          <div class="form-group form__item" v-if="action === 'register'">
+            <label class="form__text" for="passwordRepeatInput">
+              Passwort wiederholen
+            </label>
+            <input class="form-control form__input"
+                   type="password"
+                   placeholder="•••••••••"
+                   id="passwordRepeatInput">
+          </div>
+<!--
+          <div class="form__item">
+            <span class="form__text">E-Mail-Adresse</span>
+            <input class="form__input" type="email" placeholder="mail@example.com">
+          </div>
+          <div class="form__item">
+            <span class="form__text">Passwort</span>
+            <input class="form__input" type="password" placeholder="•••••••••">
+          </div>
+          <div class="form__item" v-if="action === 'register'">
+            <span class="form__text">Passwort wiederholen</span>
+            <input class="form__input" type="password" placeholder="•••••••••">
+          </div> -->
 
-      <button type="button" class="font-weight-bold"
-        @click="sendFormDataToServer()">{{button}}
-      </button>
-    </form>
-
-    <p class="bottom">
-      {{bottom}}
-      <router-link class="bottom__link font-weight-bold"
-        v-bind:to="'/' + otherUrl">
-        {{cta}}
-      </router-link>
-    </p>
+          <b-button type="button" class="font-weight-bold form-btn btn-lg btn-block btn-dark"
+            @click="sendFormDataToServer()">{{button}}
+          </b-button>
+        </b-form>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="col-md-6 offset-md-3 text center">
+        <p class="bottom">
+          {{bottom}}
+          <router-link class="bottom__link font-weight-bold"
+            v-bind:to="'/' + otherUrl">
+            {{cta}}
+          </router-link>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -142,4 +179,9 @@ export default {
       padding-left: 50px;
     }
   }
+
+  .top-buffer {
+    margin-top: 25px;
+  }
+
 </style>
