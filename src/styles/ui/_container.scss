@@ -1,0 +1,15 @@
+%container-base {
+  margin: 0 auto;
+  padding: 0 $padding-x;
+  width: 100%;
+}
+
+.container {
+  @extend %container-base;
+  max-width: $container-width;
+}
+
+.container-narrow {
+  @extend %container-base;
+  max-width: $container-narrow-width;
+}

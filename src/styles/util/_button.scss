@@ -1,0 +1,45 @@
+// @mixin button-colors($color) {
+//   background: $color;
+//   color: colorInvert($color);
+
+
+//   &:hover {
+//     background: adjust-color(lighten($color, 5%), -10%);
+//   }
+
+//   &:focus,
+//   &:active {
+//     background: adjust-color(darken($color, 5%), -10%);
+//   }
+// }
+
+
+// %button {
+//   @include button-colors($color-secondary);
+//   appearance: none;
+//   border: 0;
+//   border-radius: 0;
+//   cursor: pointer;
+//   display: inline-block;
+//   font: 900 #{$fs-base}/1 $ff-default;
+//   outline: 0;
+//   overflow: hidden;
+//   padding: $spacing-small $padding-x;
+//   text-decoration: none;
+//   transition: all $transition;
+
+
+//   &:active {
+//     transform: translateY(2px);
+//   }
+
+
+//   &.primary {
+//     @include button-colors($color-primary);
+//   }
+
+
+//   p ~ & {
+//     margin-top: $spacing-base;
+//   }
+// }

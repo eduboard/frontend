@@ -1,0 +1,43 @@
+//
+// Placeholder for creating the ruler-like lines.
+// Requires markup of the following sort:
+// `container>span*n`. Recommended amount lies at around 50-60.
+//
+
+%ruler {
+  display: flex;
+  height: $spacing-small;
+  justify-content: space-between;
+  padding: 0 5px;
+  width: 100%;
+  z-index: 0;
+
+
+  @include break(mobile, max) {
+    display: none;
+  }
+
+
+  span {
+    background: $color-primary;
+    display: block;
+    height: 100%;
+    width: 2px;
+
+    @include break(desktop, max) {
+      @include break(tablet-l) {
+        &:nth-child(3n) {
+          display: none;
+        }
+      }
+    }
+
+    @include break(tablet-l, max) {
+      @include break(mobile) {
+        &:nth-child(odd) {
+          display: none;
+        }
+      }
+    }
+  }
+}

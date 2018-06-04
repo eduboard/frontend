@@ -1,0 +1,25 @@
+//
+// Typography variables
+//
+
+$fs-document-s: 15px !default;
+$fs-document:   16px !default;
+
+$fs-x-small:    0.875rem !default;
+$fs-small:      1rem !default;
+$fs-base:       1.175rem !default;
+$fs-large:      1.75rem !default;
+$fs-x-large:    2.5rem !default;
+
+$ff-system:     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$ff-default:    $ff-system;
+// $ff-default:    'HK Concentrate Pro';
+$ff-display:    $ff-default !default;
+
+$fw-normal:     400;
+$fw-medium:     500;
+$fw-bold:       800;
+
+$lh-small:      1.125 !default;
+$lh-base-s:     1.3 !default;
+$lh-base:       1.5 !default;
