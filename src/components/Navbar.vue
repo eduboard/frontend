@@ -4,9 +4,12 @@
         <h1 class="controls__logo">eduBoard</h1>
         <nav class="controls__navigation">
           <ul>
-            <router-link tag="li" class="controls__navigation__item" to="/dashboard">Dashboard</router-link>
-            <router-link tag="li" class="controls__navigation__item" to="/impressum">Impressum</router-link>
-            <router-link tag="li" class="controls__navigation__item" to="/help">help</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/dashboard"
+            >Dashboard</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/impressum"
+            >Impressum</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/help">
+            Help</router-link>
           </ul>
         </nav>
       </div>
@@ -34,6 +37,7 @@ export default {
   name: 'navbar',
   // Daten die vom View zum Component übergeben werden
   props: {
+
   },
   // Daten die zu diesem Component gehören
   data() {

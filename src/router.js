@@ -6,7 +6,8 @@ import Impressum from './views/Impressum.vue';
 import Landing from './views/Landing.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
-import User from './views/User.vue';
+import Profile from './views/Profile.vue';
+import Help from './views/Help.vue';
 
 Vue.use(Router);
 
@@ -38,14 +39,19 @@ export default new Router({
       component: Dashboard,
     },
     {
-      path: '/user',
-      name: 'user',
-      component: User,
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
     },
     {
       path: '/impressum',
       name: 'impressum',
       component: Impressum,
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: Help,
     },
   ],
 });
