@@ -107,22 +107,21 @@ h2 {
       padding: 0;
     }
 
-
     &__item {
       line-height: 1;
 
-      a {
+      // a, router-link {
         color: $color-text;
         display: block;
         font-weight: 700;
         padding: $spacing-small $padding-x $spacing-small;
         position: relative;
         text-decoration: none;
+        cursor: pointer;
 
         &:hover {
           color: $color-bg;
         }
-
 
         &::after {
           border-top: 3px solid $color-base;
@@ -133,16 +132,17 @@ h2 {
           position: absolute;
           width: 100%;
         }
-      }
+      // }
 
-      &.active {
-        a {
+      &.router-link-active {
+        // a, router-link {
           color: $color-base;
+          cursor: default;
 
           &::after {
             display: block;
           }
-        }
+        // }
       }
     }
   }

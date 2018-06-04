@@ -2,7 +2,7 @@
   <div id="dashboard">
 
     <header class="">
-      <Top></Top>
+      <Navbar></Navbar>
     </header>
 
     <main class="container dashboard">
@@ -12,6 +12,7 @@
       <aside class="dashboard__sidebar">
 
         <SearchWithButton></SearchWithButton>
+        
         <div>
           <h2>Nachrichten</h2>
           <MessageSidebar></MessageSidebar>
@@ -23,14 +24,14 @@
 </template>
 
 <script>
-import Top from '../components/Top.vue';
+import Navbar from '../components/Navbar.vue';
 import MessageSidebar from '../components/MessageSidebar.vue';
 import SearchWithButton from '../components/SearchWithButton.vue';
 import CourseList from '../components/CourseList.vue';
 
 export default {
   components: {
-    Top,
+    Navbar,
     MessageSidebar,
     SearchWithButton,
     CourseList,

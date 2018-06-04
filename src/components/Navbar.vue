@@ -4,23 +4,25 @@
         <h1 class="controls__logo">eduBoard</h1>
         <nav class="controls__navigation">
           <ul>
-            <li class="controls__navigation__item active"><a href="">Dashboard</a></li>
-            <li class="controls__navigation__item"><a href="">Impressum</a></li>
-            <li class="controls__navigation__item"><a href="">Hilfe</a></li>
+            <router-link tag="li" class="controls__navigation__item" to="/dashboard">Dashboard</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/impressum">Impressum</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/help">help</router-link>
           </ul>
         </nav>
       </div>
 
-      <div class="controls__container--small">
+      <div v-if="user" class="controls__container--small">
         <div class="controls__user">
-          <span class="controls__user__name">Annabelle bauer</span>
-          <div class="controls__user__image">AB</div>
+          <span class="controls__user__name">{{user.name}}</span>
+          <div class="controls__user__image">{{user.short}}</div>
         </div>
 
         <nav class="controls__navigation">
           <ul>
-            <li class="controls__navigation__item"><a>Profil</a></li>
-            <li class="controls__navigation__item"><a>Logout</a></li>
+            <router-link tag="li" class="controls__navigation__item" to="/profile">Profil</router-link>
+            <li class="controls__navigation__item">
+              <a @click="logout()" class="hover">Logout</a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -29,14 +31,17 @@
 
 <script>
 export default {
-  name: 'top',
+  name: 'navbar',
   // Daten die vom View zum Component übergeben werden
   props: {
   },
   // Daten die zu diesem Component gehören
   data() {
     return {
-      // path: this.$route.path,
+      user: {
+        name: 'Annabelle Bauer',
+        short: 'AB',
+      }
     };
   },
   // Funktionen die zu diesem Component gehören

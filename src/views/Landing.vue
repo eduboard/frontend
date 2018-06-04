@@ -1,7 +1,7 @@
 <template>
   <div class="landing">
     <div class="container">
-      <h1 class="font-weight-bold"> This is the filler landing page.</h1>
+      <h1 class=""> This is the filler landing page.</h1>
       <h2> The landing page of the firm implementing this would be visible here.</h2>
       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum commodi
         dignissimos porro architecto nemo similique vel voluptate odio deserunt
@@ -26,7 +26,7 @@
         perspiciatis facilis numquam dolor, modi, ullam vitae soluta aperiam
         molestiae fugit veniam maxime quas.
       </p>
-      <router-link class="login font-weight-bold" to="/login"> Login </router-link>
+      <router-link class="login" to="/login"> Login </router-link>
     </div>
   </div>
 </template>
