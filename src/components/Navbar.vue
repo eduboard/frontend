@@ -4,12 +4,9 @@
         <h1 class="controls__logo">eduBoard</h1>
         <nav class="controls__navigation">
           <ul>
-            <router-link tag="li" class="controls__navigation__item" to="/dashboard"
-            >Dashboard</router-link>
-            <router-link tag="li" class="controls__navigation__item" to="/impressum"
-            >Impressum</router-link>
-            <router-link tag="li" class="controls__navigation__item" to="/help">
-            Help</router-link>
+            <router-link v-for="tab in tabs" :key="tab.name" tag="li"
+            class="controls__navigation__item" :to="tab.url"
+            >{{tab.name}}</router-link>
           </ul>
         </nav>
       </div>
@@ -22,7 +19,8 @@
 
         <nav class="controls__navigation">
           <ul>
-            <router-link tag="li" class="controls__navigation__item" to="/profile">Profil</router-link>
+            <router-link tag="li" class="controls__navigation__item" to="/profile">
+            Profil</router-link>
             <li class="controls__navigation__item">
               <a @click="logout()" class="hover">Logout</a>
             </li>
@@ -33,19 +31,38 @@
 </template>
 
 <script>
+import api from '../mixins/api';
+
 export default {
   name: 'navbar',
   // Daten die vom View zum Component übergeben werden
   props: {
 
   },
+  mixins: [
+    api,
+  ],
   // Daten die zu diesem Component gehören
   data() {
     return {
       user: {
         name: 'Annabelle Bauer',
         short: 'AB',
-      }
+      },
+      tabs: [
+        {
+          name: 'Dashboard',
+          url: 'dashboard',
+        },
+        {
+          name: 'Impressum',
+          url: 'imprint',
+        },
+        {
+          name: 'Hilfe',
+          url: 'help',
+        },
+      ],
     };
   },
   // Funktionen die zu diesem Component gehören
