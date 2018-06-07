@@ -12,7 +12,7 @@
       <aside class="dashboard__sidebar">
 
         <SearchWithButton></SearchWithButton>
-        
+
         <div>
           <h2>Nachrichten</h2>
           <MessageSidebar></MessageSidebar>

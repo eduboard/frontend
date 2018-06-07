@@ -79,10 +79,11 @@ export default {
     // Sendet den Request zum server
     sendFormDataToServer() {
       this.request('POST', `/api/v1/${this.action}`, (res) => {
-        console.log(res);
-        setTimeout(() => {
-          this.$router.push('/dashboard');
-        }, 500);
+        if (res) {
+          setTimeout(() => {
+            this.$router.push('/dashboard');
+          }, 500);
+        }
       });
     },
     /*

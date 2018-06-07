@@ -17,14 +17,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'searchwithbutton',
-    props: {
-      
-    }
-  }
+export default {
+  name: 'searchwithbutton',
+  props: {
+
+  },
+};
 </script>
 
 <style>
-  
+
 </style>

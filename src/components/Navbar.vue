@@ -68,10 +68,12 @@ export default {
   // Funktionen die zu diesem Component gehören
   methods: {
     logout() {
-      this.request('POST', '/api/v1/logout', () => {
-        setTimeout(() => {
-          this.$router.push('/');
-        }, 500);
+      this.request('POST', '/api/v1/logout', (res) => {
+        if (res) {
+          setTimeout(() => {
+            this.$router.push('/');
+          }, 500);
+        }
       });
     },
     profile() {
