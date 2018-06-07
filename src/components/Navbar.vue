@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import api from '../mixins/api';
+// import api from '../mixins/api';
 
 export default {
   name: 'navbar',
@@ -40,7 +40,7 @@ export default {
 
   },
   mixins: [
-    api,
+    // api,
   ],
   // Daten die zu diesem Component gehören
   data() {
@@ -68,16 +68,13 @@ export default {
   // Funktionen die zu diesem Component gehören
   methods: {
     logout() {
-      console.log('Logged out');
-      this.request('POST', '/api/v1/logout', (res) => {
-        console.log(res);
+      this.request('POST', '/api/v1/logout', () => {
         setTimeout(() => {
           this.$router.push('/');
         }, 500);
       });
     },
     profile() {
-      console.log('Clicked profile');
     },
     request(method, url, callback, body) {
       const req = new XMLHttpRequest();
