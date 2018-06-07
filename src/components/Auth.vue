@@ -1,15 +1,15 @@
 <template>
   <div class="container auth">
-    <div class="row top-buffer">
-      <div class="col-md-6 offset-md-3 text-center">
-        <h1 class="font-weight-bold">eduBoard</h1>
+    <div class="">
+      <div class="">
+        <h1 class="">eduBoard</h1>
         <h2>{{subtitle}}</h2>
       </div>
     </div>
-    <div class="row top-buffer">
-      <div class="col-md-6 offset-md-3 text-left">
-        <b-form action="POST">
-          <div class="form-group form__item">
+    <div class="">
+      <div class="">
+        <form action="POST">
+          <div class="">
             <label class="form__text" for="emailInput">
               E-Mail-Adresse
             </label>
@@ -36,10 +36,10 @@
                    placeholder="•••••••••"
                    id="passwordRepeatInput">
           </div>
-          <b-button type="button" class="font-weight-bold"
+          <button type="button" class="font-weight-bold"
             @click="sendFormDataToServer()">{{button}}
-          </b-button>
-        </b-form>
+          </button>
+        </form>
       </div>
     </div>
     <div class="row top-buffer bottom__bottom">
@@ -140,7 +140,8 @@ export default {
     border-bottom: 1px solid black;
   }
 
-  b-button {
+  button {
+    max-width: 300px;
     background-color: black;
     color: white;
     border: none;

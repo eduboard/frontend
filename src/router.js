@@ -44,8 +44,8 @@ export default new Router({
       component: Profile,
     },
     {
-      path: '/impressum',
-      name: 'impressum',
+      path: '/imprint',
+      name: 'imprint',
       component: Impressum,
     },
     {
