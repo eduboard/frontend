@@ -13,7 +13,8 @@
                type="email"
                placeholder="mail@beispiel.de"
                id="emailInput"
-               v-model="email">
+               v-model="email"
+               autofocus>
       </div>
       <div class="form__item">
         <label class="form__text" for="passwordInput">
@@ -34,7 +35,7 @@
                placeholder="•••••••••"
                id="passwordRepeatInput">
       </div>
-      <button type="button" class="form__button"
+      <button type="submit" class="form__button"
         @click="sendFormDataToServer()">{{button}}
       </button>
     </form>
