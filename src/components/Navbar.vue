@@ -12,8 +12,8 @@
           </nav>
         </div>
 
-        <div v-if="user" class="container controls__container--small">
-          <div class="controls__user">
+        <div class="container controls__container--small">
+          <div v-if="user" class="controls__user">
             <span class="controls__user__name">
             {{user.name + ' ' + user.surname}}</span>
             <div class="controls__user__image">
@@ -22,11 +22,11 @@
 
           <nav class="controls__navigation">
             <ul>
-              <router-link tag="li" class="controls__navigation__item" to="/profile">
-              Profil</router-link>
-              <li class="controls__navigation__item">
-                <a @click="logout()" class="hover">Logout</a>
-              </li>
+              <div v-for="tab in controls" :key="tab.name">
+                <router-link ng-if="tab.type === 'main'" tag="li"
+                class="controls__navigation__item" :to="tab.url"
+                >{{tab.name}}</router-link>
+              </div>
             </ul>
           </nav>
         </div>
@@ -45,6 +45,10 @@ export default {
       user: this.$store.state.user,
       tabs: [
         {
+          name: 'Hauptseite',
+          url: 'landing',
+        },
+        {
           name: 'Dashboard',
           url: 'dashboard',
         },
@@ -57,6 +61,20 @@ export default {
           url: 'help',
         },
       ],
+      controls:[
+        {
+          name: 'Kursmanagement',
+          url: 'logout',
+        },
+        {
+          name: 'Profil',
+          url: 'profile',
+        },
+        {
+          name: 'Logout',
+          url: 'logout',
+        },
+      ]
     };
   },
 
@@ -69,7 +87,7 @@ export default {
 
   methods: {
     logout() {
-      this.$api.request('POST', '/api/logout', (res) => {
+      this.$api.request('POST', 'https://eduboard.io/api/logout', (res) => {
         if (res.success !== false) {
           this.$router.push('/');
         } else {

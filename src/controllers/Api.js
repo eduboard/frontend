@@ -32,5 +32,29 @@ export default {
       req.setRequestHeader('Content-Type', 'application/json');
     }
     req.send(body);
-  }
+  },
+
+  login() {
+
+  },
+
+  logout() {
+
+  },
+
+  register() {
+
+  },
+
+  getUser() {
+
+  },
+
+  getCourses() {
+
+  },
+
+  getAllCourses() {
+
+  },
 };

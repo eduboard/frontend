@@ -19,17 +19,16 @@ export default {
 
 @import "styles/ui/container";
 
-$color-primary: #000000;
-$color-soft:    #BAC2CA;
-$color-text:    #70808E;
+$color-primary: #85c942;
+$color-soft:    #101010;
+$color-text:    #202020;
 $color-bg:      #FAFAFA;
-$color-accent:  #50A5FF;
+$color-accent:  #3d700b;
 
 $fs-document:   15px;
 
 $fs-large:      1.375rem;
 $fs-x-large:    2rem;
-
 
 html {
   font-size: $fs-document;
@@ -307,7 +306,7 @@ h2 {
 
     &__file {
       background: $color-primary;
-      color: $color-base;
+      color: $color-text;
       font-size: $fs-small;
       font-weight: 700;
       line-height: 1;

@@ -71,7 +71,7 @@ export default {
   methods: {
     // Sendet den Request zum server
     sendFormDataToServer() {
-      this.$api.request('POST', `/api/${this.action}`, (res) => {
+      this.$api.request('POST', `https://eduboard.io/api/${this.action}`, (res) => {
         if (res.success !== false) {
           console.log(res);
           this.$store.commit('user', res);
