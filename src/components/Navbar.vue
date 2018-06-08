@@ -14,8 +14,10 @@
 
         <div v-if="user" class="container controls__container--small">
           <div class="controls__user">
-            <span class="controls__user__name">{{user.name}}</span>
-            <div class="controls__user__image">{{user.short}}</div>
+            <span class="controls__user__name">
+            {{user.name + ' ' + user.surname}}</span>
+            <div class="controls__user__image">
+            {{user.name.slice(0,1) + user.surname.slice(0,1)}}</div>
           </div>
 
           <nav class="controls__navigation">
