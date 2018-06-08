@@ -1,13 +1,25 @@
 import Vue from 'vue';
-import Vuex from 'vuex';
 import App from './App.vue';
 import router from './router';
+import Store from './controllers/Store';
+import Api from './controllers/Api';
 
 Vue.config.productionTip = false;
 
-Vue.use(Vuex);
+Vue.use({
+  Store,
+  install(vv) {
+    vv.prototype.$store = Store;
+  }
+});
 
-// vue = new Vue
+Vue.use({
+  Api,
+  install(vv) {
+    vv.prototype.$api = Api;
+  }
+});
+
 new Vue({
   router,
   render: h => h(App),
