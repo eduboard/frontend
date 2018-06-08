@@ -1,8 +1,5 @@
 <template>
   <div>
-    <header class="">
-      <Navbar></Navbar>
-    </header>
     <div class="container">
       <h1 class="">Impressum</h1>
       <h2>Eduboard</h2>
@@ -34,17 +31,12 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue';
-
 export default {
   components: {
-    Navbar,
   },
   name: 'impressum',
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style></style>
 

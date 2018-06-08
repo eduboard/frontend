@@ -1,8 +1,5 @@
 <template>
   <div>
-    <header>
-      <Navbar></Navbar>
-    </header>
     <div class="container landing">
       <h1 class="">Landing Page</h1>
       <h2> The landing page of the firm implementing this would be visible here.</h2>
@@ -19,23 +16,11 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue';
-
 export default {
   components: {
-    Navbar,
   },
   name: 'landing',
 };
 </script>
 
-<style lang="scss">
-
-  .landing {
-    padding-top: 5%;
-
-    h1, h2, p {
-      padding-bottom: 2%;
-    }
-  }
-</style>
+<style></style>

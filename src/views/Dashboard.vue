@@ -1,17 +1,13 @@
 <template>
   <div id="dashboard">
 
-    <header class="">
-      <Navbar></Navbar>
-    </header>
-
     <main class="container dashboard">
 
       <CourseList></CourseList>
 
       <aside class="dashboard__sidebar">
 
-        <SearchWithButton></SearchWithButton>
+        <Searchbar filler="Kurse durchsuchen..."></Searchbar>
 
         <div>
           <h2>Nachrichten</h2>
@@ -24,22 +20,18 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue';
 import MessageSidebar from '../components/MessageSidebar.vue';
-import SearchWithButton from '../components/SearchWithButton.vue';
+import Searchbar from '../components/Searchbar.vue';
 import CourseList from '../components/CourseList.vue';
 
 export default {
   components: {
-    Navbar,
     MessageSidebar,
-    SearchWithButton,
+    Searchbar,
     CourseList,
   },
   name: 'dashboard',
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

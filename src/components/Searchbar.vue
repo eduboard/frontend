@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="dashboard__sidebar__search">
-    <input type="text" placeholder="Nach Kursen suchen...">
+    <input type="text" :placeholder="filler">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
       <path fill="none" stroke="#70808E" stroke-miterlimit="10" stroke-width=
       "4" d="M39.049 39.049L56 56" stroke-linejoin="round" stroke-linecap="
@@ -11,20 +11,16 @@
       stroke-linecap="round"></circle>
     </svg>
   </div>
-
-  <button class="dashboard__sidebar__all">Alle Kurse anzeigen</button>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'searchwithbutton',
+  name: 'searchbar',
   props: {
-
-  },
+    filler: String
+  }
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

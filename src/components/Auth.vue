@@ -36,7 +36,7 @@
                id="passwordRepeatInput">
       </div>
       <button type="submit" class="form__button"
-        @click="sendFormDataToServer()">{{button}}
+        @click="evaluateAction()">{{button}}
       </button>
     </form>
     <p class="bottom">
@@ -70,23 +70,17 @@ export default {
   },
   methods: {
     // Sendet den Request zum server
-    sendFormDataToServer() {
-      this.$api.request('POST', `https://eduboard.io/api/${this.action}`, (res) => {
-        if (res.success !== false) {
-          console.log(res);
-          this.$store.commit('user', res);
-          this.$router.push('/dashboard');
-        }
-      }, JSON.stringify({
+    evaluateAction() {
+      this.$api.auth(this.action, {
         email: this.email,
         password: this.password
-      }));
+      });
     },
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 
 @import "../styles/form";
 

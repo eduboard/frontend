@@ -1,8 +1,5 @@
 <template>
   <div>
-    <header>
-      <Navbar></Navbar>
-    </header>
     <div class="container">
       <h1 class="">This is the filler user page.</h1>
       <h2> The landing page of the firm implementing this would be visible here.</h2>
@@ -14,12 +11,9 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar.vue';
 
 export default {
-  components: {
-    Navbar,
-  },
+  components: {},
   name: 'profile',
 };
 </script>
