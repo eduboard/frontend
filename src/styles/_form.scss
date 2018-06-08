@@ -1,0 +1,32 @@
+.form {
+
+ margin: 0 auto;
+
+  &__item {
+    margin-top: 1em;
+  }
+
+  &__text {
+    display: block;
+    text-align: left;
+  }
+
+  &__input {
+    outline: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+  }
+
+  &__button {
+    background-color: black;
+    color: white;
+    border: none;
+    width: 100%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 5%;
+    cursor: pointer;
+    text-align: center;
+  }
+
+}

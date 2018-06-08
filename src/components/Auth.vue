@@ -1,58 +1,50 @@
 <template>
   <div class="container auth">
-    <div class="">
-      <div class="">
-        <h1 class="">eduBoard</h1>
-        <h2>{{subtitle}}</h2>
-      </div>
+    <div class="title">
+      <h1 class="">eduBoard</h1>
+      <h2>{{subtitle}}</h2>
     </div>
-    <div class="">
-      <div class="">
-        <form action="POST">
-          <div class="">
-            <label class="form__text" for="emailInput">
-              E-Mail-Adresse
-            </label>
-            <input class="form-control"
-                   type="email"
-                   placeholder="mail@beispiel.de"
-                   id="emailInput">
-          </div>
-          <div class="form-group form__item">
-            <label class="form__text" for="passwordInput">
-              Passwort
-            </label>
-            <input class="form-control"
-                   type="password"
-                   placeholder="•••••••••"
-                   id="passwordInput">
-          </div>
-          <div class="form-group form__item appear-later" v-if="action === 'register'">
-            <label class="form__text" for="passwordRepeatInput">
-              Passwort wiederholen
-            </label>
-            <input class="form-control"
-                   type="password"
-                   placeholder="•••••••••"
-                   id="passwordRepeatInput">
-          </div>
-          <button type="button" class="font-weight-bold"
-            @click="sendFormDataToServer()">{{button}}
-          </button>
-        </form>
+    <form class="form" action="POST">
+      <div class="form__item">
+        <label class="form__text" for="emailInput">
+          E-Mail-Adresse
+        </label>
+        <input class="form__input"
+               type="email"
+               placeholder="mail@beispiel.de"
+               id="emailInput">
       </div>
-    </div>
-    <div class="row top-buffer bottom__bottom">
-      <div class="col-md-6 offset-md-3 text center">
-        <p class="bottom">
-          {{bottom}}
-          <router-link class="bottom__link font-weight-bold"
-            v-bind:to="'/' + otherUrl">
-            {{cta}}
-          </router-link>
-        </p>
+      <div class="form__item">
+        <label class="form__text" for="passwordInput">
+          Passwort
+        </label>
+        <input class="form__input"
+               type="password"
+               placeholder="•••••••••"
+               id="passwordInput">
       </div>
-    </div>
+      <div class="form__item appear-later" v-if="action === 'register'">
+        <label class="form__text" for="passwordRepeatInput">
+          Passwort wiederholen
+        </label>
+        <input class="form__input"
+               type="password"
+               placeholder="•••••••••"
+               id="passwordRepeatInput">
+      </div>
+      <button type="button" class="form__button"
+        @click="sendFormDataToServer()">{{button}}
+      </button>
+    </form>
+    <p class="bottom">
+      <span class="bottom__text">
+        {{bottom}}
+      </span>
+      <router-link class="bottom__link font-weight-bold"
+        v-bind:to="'/' + otherUrl">
+        {{cta}}
+      </router-link>
+    </p>
   </div>
 </template>
 
@@ -118,70 +110,64 @@ export default {
 
 <style lang="scss" scoped>
 
-  .auth {
-    text-align: center;
-    font-weight: 700 !important;
-    text-decoration: none;
-    padding-top: 6%;
+@import "../styles/form";
+
+.auth {
+  text-align: center;
+  font-weight: 700 !important;
+  text-decoration: none;
+  padding-top: 5%;
+  max-width: 500px;
+}
+
+.title {
+  padding-bottom: 5%;
+}
+
+h1 {
+  margin: 0;
+}
+
+h2 {
+  margin: 0;
+}
+
+.bottom {
+  color: #1f1f1f;
+
+  &__text {
+    display: inline-block;
   }
 
-  h1 {
+  &__link {
     color: black;
-    padding-top: 10%;
-    padding-bottom: 5%;
+    padding-left: 50px;
+    display: inline-block;
   }
 
-  h2 {
-    padding-bottom: 6%;
+  &__bottom {
+    padding-top: 5%;
   }
+}
 
-  input {
-    outline: none;
-    border-bottom: 1px solid black;
-  }
-
-  button {
-    max-width: 300px;
-    background-color: black;
-    color: white;
-    border: none;
-    width: 100%;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    margin-top: 5%;
-    cursor: pointer;
-    text-align: center;
-  }
-
-  .bottom {
-    color: #1f1f1f;
-    &__link {
-      color: black;
-      padding-left: 50px;
-    }
-
-    &__bottom {
-      padding-top: 5%;
-    }
-  }
-
-  .top-buffer {
-    margin-top: 25px;
-  }
+.top-buffer {
+  margin-top: 25px;
+}
 
 
-  @keyframes slideIn {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(0);
-    }
+@keyframes slideIn {
+  0% {
+    transform: translateY(-100%);
   }
-  .appear-later {
-    transition: 1s ease-out 0s 1 slideIn;
-    // position: relative;
+  100% {
+    transform: translateY(0);
   }
+}
+
+.appear-later {
+  transition: 1s ease-out 0s 1 slideIn;
+  // position: relative;
+}
 
 
 </style>
