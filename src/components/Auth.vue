@@ -4,7 +4,7 @@
       <h1 class="">eduBoard</h1>
       <h2>{{subtitle}}</h2>
     </div>
-    <form class="form" action="POST">
+    <form class="form" action="POST" v-on:submit.prevent="">
       <div class="form__item">
         <label class="form__text" for="emailInput">
           E-Mail-Adresse

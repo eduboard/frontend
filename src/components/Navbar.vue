@@ -64,6 +64,7 @@ export default {
     if (this.$store.state.user) {
       return this.$store.state.user;
     }
+    return true;
   },
 
   methods: {
