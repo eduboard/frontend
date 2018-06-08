@@ -67,7 +67,7 @@ export default {
 
   methods: {
     logout() {
-      this.$api.request('POST', 'https://eduboard.io/api/logout', (res) => {
+      this.$api.request('POST', '/api/logout', (res) => {
         if (res.success !== false) {
           this.$router.push('/');
         } else {
