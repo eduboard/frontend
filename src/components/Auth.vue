@@ -12,7 +12,8 @@
         <input class="form__input"
                type="email"
                placeholder="mail@beispiel.de"
-               id="emailInput">
+               id="emailInput"
+               v-model="email">
       </div>
       <div class="form__item">
         <label class="form__text" for="passwordInput">
@@ -21,7 +22,8 @@
         <input class="form__input"
                type="password"
                placeholder="•••••••••"
-               id="passwordInput">
+               id="passwordInput"
+               v-model="password">
       </div>
       <div class="form__item appear-later" v-if="action === 'register'">
         <label class="form__text" for="passwordRepeatInput">
@@ -59,9 +61,12 @@ export default {
     otherUrl: String,
     button: String,
   },
-  // data() {
-  // return {};
-  // },
+  data() {
+    return {
+      email: '',
+      password: ''
+    };
+  },
   methods: {
     // Sendet den Request zum server
     sendFormDataToServer() {
@@ -71,7 +76,10 @@ export default {
           this.$store.commit('user', res);
           this.$router.push('/dashboard');
         }
-      });
+      }, JSON.stringify({
+        email: this.email,
+        password: this.password
+      }));
     },
   },
 };
@@ -99,6 +107,10 @@ h1 {
 
 h2 {
   margin: 0;
+}
+
+input {
+  color: black;
 }
 
 .bottom {
