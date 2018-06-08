@@ -59,7 +59,6 @@
 <script>
 export default {
   name: 'auth',
-  // Daten die vom View zum Component übergeben werden
   props: {
     action: String,
     subtitle: String,
@@ -68,49 +67,19 @@ export default {
     otherUrl: String,
     button: String,
   },
-  // Daten die zu diesem Component gehören
-  data() {
-    return {
-      // path: this.$route.path,
-    };
-  },
-  // Funktionen die zu diesem Component gehören
+  // data() {
+  // return {};
+  // },
   methods: {
     // Sendet den Request zum server
     sendFormDataToServer() {
-      this.request('POST', `/api/v1/${this.action}`, (res) => {
-        if (res) {
-          setTimeout(() => {
-            this.$router.push('/dashboard');
-          }, 500);
+      this.$api.request('POST', `https://eduboard.io/api/${this.action}`, (res) => {
+        if (res.success !== false) {
+          console.log(res);
+          this.$store.commit('user', res);
+          this.$router.push('/dashboard');
         }
       });
-    },
-    /*
-     * Request wrapper. Takes a callback and passes JSON response to it.
-     * Catched non-JSON responses. Handling of success/failure is left to the callback
-     */
-    // TODO: Mach diese Funktion global, damit alle components sie verwenden können
-    request(method, url, callback, body) {
-      const req = new XMLHttpRequest();
-      req.onreadystatechange = function onResponse() {
-        // If a JSON response
-        if (this.readyState === 4 && req.responseText[0] === '{') {
-          callback(JSON.parse(req.responseText));
-        // If not a JSON response
-        } else if (this.readyState === 4) {
-          callback({
-            success: false,
-            status: this.status,
-            msg: req.responseText,
-          });
-        }
-      };
-      req.open(method, url, true);
-      if (typeof body !== 'undefined') {
-        req.setRequestHeader('Content-Type', 'application/json');
-      }
-      req.send(body);
     },
   },
 };
