@@ -5,10 +5,10 @@
 </template>
 
 <script>
-  export default {
-    components: {
-    }
-  }
+export default {
+  components: {
+  },
+};
 </script>
 
 <style lang="scss">
@@ -154,10 +154,16 @@ h2 {
 
 
   &__container {
+    justify-content: space-between;
+
     &--large,
     &--small {
       display: flex;
       flex-direction: column;
+    }
+
+    &--small {
+      flex: 1 0 300px;
     }
   }
 
@@ -165,8 +171,10 @@ h2 {
   &__user {
     align-items: center;
     display: flex;
+    justify-content: space-between;
 
     &__name {
+      display: block;
       font-size: $fs-large;
       font-weight: 700;
       line-height: 1;
@@ -178,11 +186,11 @@ h2 {
       border-radius: 50%;
       color: $color-primary;
       display: flex;
+      flex: 0 0 50px;
       font-weight: 700;
       height: 50px;
       justify-content: center;
       margin-left: $spacing-large;
-      width: 50px;
     }
   }
 }
