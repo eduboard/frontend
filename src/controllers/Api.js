@@ -12,10 +12,10 @@ export default {
           callback(JSON.parse(req.responseText));
         } catch (e) {
           callback({
-            success: false,
+            success: true,
             status: this.status,
             msg: req.responseText,
-            error: 'Could not parse JSON response'
+            note: 'Could not parse JSON response'
           });
         }
       // If not a JSON response
