@@ -1,3 +1,5 @@
+import Store from './Store';
+
 const authUrl = 'https://eduboard.io/api/';
 const apiUrl = 'https://eduboard.io/api/v1/';
 
@@ -8,10 +10,11 @@ const auth = {};
  * Redirects to dashboad on success
  */
 auth.auth = function (action, params) {
+  console.log(`Called ${action}`);
   this.request('POST', `${authUrl}${action}`, (res) => {
     if (res.success !== false) {
       console.log(res);
-      this.$store.commit('user', res);
+      Store.commit('user', res);
       this.$router.push('/dashboard');
     }
   }, params);
@@ -21,11 +24,11 @@ auth.auth = function (action, params) {
  * Logs out the user and redirects to landing page.
  */
 auth.logout = function () {
-  this.$api.request('POST', `${authUrl}logout`, (res) => {
+  console.log('Called logout');
+  this.request('POST', `${authUrl}logout`, (res) => {
     if (res.success !== false) {
+      console.log('Logout successful');
       this.$router.push('/');
-    } else {
-      console.log('error on logout');
     }
   });
 };
@@ -35,9 +38,17 @@ auth.logout = function () {
  * Failure to fetch user will redirect to the login page,
  * if the URL is neither imprint nor landing
  */
-auth.getUser = function () {
-  this.request('GET', `${apiUrl}/users/${1}/`, (res) => {
-    this.$store.commit('user', res);
+auth.getSelf = function () {
+  console.log('Called getUser');
+  const userExisted = !!Store.state.user.mail;
+  this.request('GET', `${apiUrl}/me`, (res) => {
+    if (res.success !== false) {
+      Store.commit('user', res);
+      if (!userExisted) {
+        this.getCourses();
+        this.getAllCourses();
+      }
+    }
   });
 };
 
@@ -47,8 +58,10 @@ auth.getUser = function () {
  * Will be fetched on first dashboard entry.
  */
 auth.getCourses = function () {
-  this.request('GET', `${apiUrl}/users/${1}/courses/`, (res) => {
-    this.$store.commit('user', res);
+  console.log('Called getcourses');
+  const userId = Store.state.user.id;
+  this.request('GET', `${apiUrl}/users/${userId}/courses/`, (res) => {
+    Store.commit('user', res);
   });
 };
 
@@ -57,8 +70,9 @@ auth.getCourses = function () {
  * as a list of title, description and time period.
  */
 auth.getAllCourses = function () {
+  console.log('Called getAllCourses');
   this.request('GET', `${apiUrl}`, (res) => {
-    this.$store.commit('user', res);
+    Store.commit('user', res);
   });
 };
 
@@ -72,25 +86,32 @@ auth.getAllCourses = function () {
 auth.request = function (method, url, callback, body) {
   const req = new XMLHttpRequest();
   req.onreadystatechange = function onResponse() {
-    // If a JSON response
-    if (this.readyState === 4 && req.responseText[0] === '{') {
-      try {
-        callback(JSON.parse(req.responseText));
-      } catch (e) {
+
+    // Once the request is finished
+    if (this.readyState === 4) {
+
+      // If it successful and a JSON response
+      if (this.status === 200 && this.responseText[0] === '{'
+        || this.responseText[0] === '[') {
+        callback(JSON.parse(this.responseText));
+
+      // If Unauthorized (401)
+      } else if (this.status === 401) {
+        // TODO Router redirect to login
+
+      // If Server Fault (500)
+      } else if (this.status === 401) {
+        // TODO Display warning message to client
+        console.log('Server error');
+
+      // Else if failed otherwise
+      } else {
         callback({
-          success: true,
+          success: false,
           status: this.status,
-          msg: req.responseText,
-          note: 'Could not parse JSON response'
+          msg: this.responseText,
         });
       }
-    // If not a JSON response
-    } else if (this.readyState === 4) {
-      callback({
-        success: false,
-        status: this.status,
-        msg: req.responseText,
-      });
     }
   };
   req.open(method, url, true);

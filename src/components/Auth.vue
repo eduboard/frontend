@@ -1,43 +1,35 @@
 <template>
-  <div class="container auth">
+  <div class="container -narrow auth">
     <div class="title">
-      <h1 class="">eduBoard</h1>
       <h2>{{subtitle}}</h2>
     </div>
     <form class="form" action="POST" v-on:submit.prevent="">
       <div class="form__item">
-        <label class="form__text" for="emailInput">
-          E-Mail-Adresse
-        </label>
         <input class="form__input"
                type="email"
                placeholder="mail@beispiel.de"
                id="emailInput"
                v-model="email"
                autofocus>
+        <label class="form__text" for="emailInput">E-Mail-Adresse</label>
       </div>
       <div class="form__item">
-        <label class="form__text" for="passwordInput">
-          Passwort
-        </label>
         <input class="form__input"
                type="password"
                placeholder="•••••••••"
                id="passwordInput"
                v-model="password">
+        <label class="form__text" for="passwordInput">Passwort</label>
       </div>
       <div class="form__item appear-later" v-if="action === 'register'">
-        <label class="form__text" for="passwordRepeatInput">
-          Passwort wiederholen
-        </label>
         <input class="form__input"
                type="password"
                placeholder="•••••••••"
                id="passwordRepeatInput">
+        <label class="form__text" for="passwordRepeatInput">Passwort wiederholen</label>
       </div>
       <button type="submit" class="form__button"
-        @click="evaluateAction()">{{button}}
-      </button>
+        @click="evaluateAction()">{{button}} </button>
     </form>
     <p class="bottom">
       <span class="bottom__text">
@@ -80,70 +72,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-
-@import "../styles/form";
-
-.auth {
-  text-align: center;
-  font-weight: 700 !important;
-  text-decoration: none;
-  padding-top: 5%;
-  max-width: 500px;
-}
-
-.title {
-  padding-bottom: 5%;
-}
-
-h1 {
-  margin: 0;
-}
-
-h2 {
-  margin: 0;
-}
-
-input {
-  color: black;
-}
-
-.bottom {
-  color: #1f1f1f;
-
-  &__text {
-    display: inline-block;
-  }
-
-  &__link {
-    color: black;
-    padding-left: 50px;
-    display: inline-block;
-  }
-
-  &__bottom {
-    padding-top: 5%;
-  }
-}
-
-.top-buffer {
-  margin-top: 25px;
-}
-
-
-@keyframes slideIn {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.appear-later {
-  transition: 1s ease-out 0s 1 slideIn;
-  // position: relative;
-}
-
-
-</style>
+<style></style>

@@ -31,9 +31,13 @@ export default {
   },
   data() {
     return {
-      courses: this.$store.state.courses
     };
   },
+  computed: {
+    courses() {
+      return this.$store.state.courses;
+    }
+  }
 };
 </script>
 

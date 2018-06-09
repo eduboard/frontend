@@ -23,10 +23,15 @@
 import Searchbar from '../components/Searchbar.vue';
 
 export default {
+  name: 'search',
   components: {
     Searchbar
   },
-  name: 'search',
+  computed: {
+    allCourses() {
+      return this.$store.state.allCourses;
+    }
+  }
 };
 </script>
 

@@ -14,6 +14,9 @@ export default {
   components: {
     Navbar
   },
+  mounted() {
+    this.$api.getSelf();
+  }
 };
 </script>
 
@@ -24,7 +27,6 @@ export default {
 @import "styles/utility";
 
 @import "styles/ui/container";
-
 
 $color-primary: #000000;
 $color-soft:    #BAC2CA;
@@ -74,7 +76,7 @@ input {
 }
 
 .auth {
-  margin: auto;
+  margin-top: 8rem;
   padding-bottom: 10rem;
 }
 
@@ -229,7 +231,6 @@ h2 {
     &__item {
       line-height: 1;
 
-      // a, router-link {
       color: rgba(colorInvert($color-ui), 0.5);
       cursor: pointer;
       display: block;
@@ -252,17 +253,14 @@ h2 {
         position: absolute;
         width: 100%;
       }
-      // }
 
       &.router-link-active {
-        // a, router-link {
         color: $color-base;
         cursor: default;
 
         &::after {
           display: block;
         }
-        // }
       }
     }
   }
