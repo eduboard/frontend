@@ -435,6 +435,12 @@ h2 {
 
 
 .overview {
+
+  &__search {
+    font-size: 2rem;
+    margin: 2rem;
+  }
+
   &__courses {
     display: flex;
     flex-wrap: wrap;
@@ -481,6 +487,7 @@ h2 {
     list-style: none;
     margin: 0;
     padding: 0;
+    width: 100%;
   }
 
 
@@ -502,6 +509,10 @@ h2 {
       @include break(desktop) {
         margin-left: 4%;
       }
+    }
+
+    .card__content {
+      margin-right: auto;
     }
 
     &__file {
@@ -538,14 +549,15 @@ h2 {
       position: relative;
 
       input {
-        padding: 0.25rem 0 0.75rem $fs-x-large * 1.25;
+        padding: 0.75rem 0 0.75rem $fs-x-large * 1.25;
         width: 100%;
       }
 
 
       svg {
+        top: 50%;
+        transform: translateY(-50%);
         position: absolute;
-        top: 0;
         left: 0;
         height: $fs-x-large;
         width: $fs-x-large;

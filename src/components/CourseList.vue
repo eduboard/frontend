@@ -2,7 +2,7 @@
 <ul class="dashboard__courses">
 
   <li v-for="(course, index) in courses" :key="index"
-  class="dashboard__course card" :class="{new: course.isNew}">
+  class="dashboard__course course card" :class="{new: course.isNew}">
 
     <div class="card__content">
       <h3>{{course.title + (5 - index)}}<span>{{course.messages}}</span></h3>
