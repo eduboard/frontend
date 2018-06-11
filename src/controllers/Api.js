@@ -1,7 +1,8 @@
 import Store from './Store';
+import router from '../router';
 
-const authUrl = 'https://eduboard.io/api/';
-const apiUrl = 'https://eduboard.io/api/v1/';
+const authUrl = '/api/';
+const apiUrl = '/api/v1/';
 
 const auth = {};
 
@@ -15,7 +16,8 @@ auth.auth = function (action, params) {
     if (res.success !== false) {
       console.log(res);
       Store.commit('user', res);
-      this.$router.push('/dashboard');
+      console.log(Store.state.user);
+      router.push('/dashboard');
     }
   }, params);
 };
@@ -28,7 +30,7 @@ auth.logout = function () {
   this.request('POST', `${authUrl}logout`, (res) => {
     if (res.success !== false) {
       console.log('Logout successful');
-      this.$router.push('/');
+      router.push('/');
     }
   });
 };
@@ -38,16 +40,19 @@ auth.logout = function () {
  * Failure to fetch user will redirect to the login page,
  * if the URL is neither imprint nor landing
  */
-auth.getSelf = function () {
+auth.getSelf = function (callback = null) {
   console.log('Called getUser');
   const userExisted = !!Store.state.user.mail;
-  this.request('GET', `${apiUrl}/me`, (res) => {
+  this.request('GET', `${apiUrl}me`, (res) => {
     if (res.success !== false) {
       Store.commit('user', res);
       if (!userExisted) {
         this.getCourses();
         this.getAllCourses();
       }
+      if (callback) callback(true);
+    } else if (callback) {
+      callback(false);
     }
   });
 };
@@ -61,7 +66,7 @@ auth.getCourses = function () {
   console.log('Called getcourses');
   const userId = Store.state.user.id;
   this.request('GET', `${apiUrl}/users/${userId}/courses/`, (res) => {
-    Store.commit('user', res);
+    Store.commit('courses', res);
   });
 };
 
@@ -72,7 +77,7 @@ auth.getCourses = function () {
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
   this.request('GET', `${apiUrl}`, (res) => {
-    Store.commit('user', res);
+    Store.commit('allCourses', res);
   });
 };
 
@@ -95,12 +100,13 @@ auth.request = function (method, url, callback, body) {
         || this.responseText[0] === '[') {
         callback(JSON.parse(this.responseText));
 
-      // If Unauthorized (401)
+      // If Unauthorized (401) redirect to login
       } else if (this.status === 401) {
-        // TODO Router redirect to login
+        Store.commit('user', {});
+        router.push('/login');
 
-      // If Server Fault (500)
-      } else if (this.status === 401) {
+      // If Server Fault (500) display error
+      } else if (this.status === 500) {
         // TODO Display warning message to client
         console.log('Server error');
 

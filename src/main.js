@@ -25,12 +25,11 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
-// router.beforeEach((to, from, next) => {
-//   console.log('to');
-//   if (!Store.state.user.email && !to.includes('imprint')
-//     && !to.includes('landing') && !to.includes('login')
-//     && !to.includes('register')) {
-//     // next();
-//   }
-//   next();
-// });
+const nonRestricted = ['login', 'imprint', 'register', 'landing', 'search'];
+
+router.beforeEach((to, from, next) => {
+  if (!Store.state.user.email && !nonRestricted.includes(to.name)) {
+    next('/login');
+  }
+  next();
+});

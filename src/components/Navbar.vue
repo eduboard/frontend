@@ -72,13 +72,21 @@ export default {
   props: {},
   data() {
     return {
-      user: this.$store.state.user
+      // user: {}
+      user: this.$store.state.user;
     };
   },
   methods: {
     logout() {
       this.$api.logout();
     }
+  },
+  mount() {
+    // this.$store.subscribe((mutation, state) => {
+    //   if (mutation === 'user') {
+    //     this.user = state;
+    //   }
+    // });
   }
 };
 </script>
