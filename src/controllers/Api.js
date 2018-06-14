@@ -1,8 +1,8 @@
 import { Store } from './Store';
 import router from '../router';
 
-const authUrl = 'https://eduboard.io/api/';
-const apiUrl = 'https://eduboard.io/api/v1/';
+const authUrl = 'https://eduboard.io/api';
+const apiUrl = 'https://eduboard.io/api/v1';
 
 const auth = {};
 
@@ -12,7 +12,7 @@ const auth = {};
  */
 auth.auth = function (action, params) {
   console.log(`Called ${action}`);
-  this.request('POST', `${authUrl}${action}`, (res) => {
+  this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
       console.log(res);
       Store.commit('user', res);
@@ -28,7 +28,7 @@ auth.auth = function (action, params) {
  */
 auth.logout = function () {
   console.log('Called logout');
-  this.request('POST', `${authUrl}logout`, (res) => {
+  this.request('POST', `${authUrl}/logout`, (res) => {
     if (res.success !== false) {
       console.log('Logout successful');
       router.push('/');
@@ -44,7 +44,7 @@ auth.logout = function () {
 auth.getSelf = function (callback = null) {
   console.log('Called getUser');
   const userExisted = Boolean(Store.state.user.mail);
-  this.request('GET', `${apiUrl}me/`, (res) => {
+  this.request('GET', `${apiUrl}/me/`, (res) => {
     if (res.success !== false) {
       Store.commit('user', res);
       if (!userExisted) {
@@ -79,7 +79,7 @@ auth.getCourses = function () {
  */
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
-  this.request('GET', `${apiUrl}courses/`, (res) => {
+  this.request('GET', `${apiUrl}/courses/`, (res) => {
     if (res.success !== false) {
       Store.commit('allCourses', res);
     }
