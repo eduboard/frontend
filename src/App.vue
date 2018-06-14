@@ -4,6 +4,7 @@
       <Navbar></Navbar>
     </header>
     <router-view/>
+    <!-- <Notifications></Notifications> -->
   </div>
 </template>
 
@@ -16,7 +17,6 @@ export default {
   },
   mounted() {
     this.$api.getSelf();
-    this.$api.getAllCourses();
   }
 };
 </script>

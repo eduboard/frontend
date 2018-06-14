@@ -1,4 +1,4 @@
-import Store from './Store';
+import { Store } from './Store';
 import router from '../router';
 
 const authUrl = 'https://eduboard.io/api/';
@@ -42,8 +42,8 @@ auth.logout = function () {
  */
 auth.getSelf = function (callback = null) {
   console.log('Called getUser');
-  const userExisted = !!Store.state.user.mail;
-  this.request('GET', `${apiUrl}me`, (res) => {
+  const userExisted = Boolean(Store.state.user.mail);
+  this.request('GET', `${apiUrl}me/`, (res) => {
     if (res.success !== false) {
       Store.commit('user', res);
       if (!userExisted) {
@@ -66,7 +66,9 @@ auth.getCourses = function () {
   console.log('Called getcourses');
   const userId = Store.state.user.id;
   this.request('GET', `${apiUrl}/users/${userId}/courses/`, (res) => {
-    Store.commit('courses', res);
+    if (res.success !== false) {
+      Store.commit('courses', res);
+    }
   });
 };
 
@@ -77,7 +79,9 @@ auth.getCourses = function () {
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
   this.request('GET', `${apiUrl}courses/`, (res) => {
-    Store.commit('allCourses', res);
+    if (res.success !== false) {
+      Store.commit('allCourses', res);
+    }
   });
 };
 
@@ -90,6 +94,7 @@ auth.getAllCourses = function () {
  */
 auth.request = function (method, url, callback, body) {
   const req = new XMLHttpRequest();
+  req.withCredentials = true;
   req.onreadystatechange = function onResponse() {
 
     // Once the request is finished
@@ -101,7 +106,7 @@ auth.request = function (method, url, callback, body) {
         callback(JSON.parse(this.responseText));
 
       // If Unauthorized (401) redirect to login
-      } else if (this.status === 401) {
+      } else if (this.status === 401 || this.status === 403) {
         Store.commit('user', {});
         router.push('/login');
 
