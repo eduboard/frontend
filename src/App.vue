@@ -16,6 +16,7 @@ export default {
   },
   mounted() {
     this.$api.getSelf();
+    this.$api.getAllCourses();
   }
 };
 </script>

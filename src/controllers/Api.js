@@ -1,8 +1,8 @@
 import Store from './Store';
 import router from '../router';
 
-const authUrl = '/api/';
-const apiUrl = '/api/v1/';
+const authUrl = 'https://eduboard.io/api/';
+const apiUrl = 'https://eduboard.io/api/v1/';
 
 const auth = {};
 
@@ -76,7 +76,7 @@ auth.getCourses = function () {
  */
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
-  this.request('GET', `${apiUrl}`, (res) => {
+  this.request('GET', `${apiUrl}courses/`, (res) => {
     Store.commit('allCourses', res);
   });
 };

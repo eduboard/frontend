@@ -73,7 +73,7 @@ export default {
   data() {
     return {
       // user: {}
-      user: this.$store.state.user;
+      user: this.$store.state.user
     };
   },
   methods: {
