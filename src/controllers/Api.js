@@ -16,8 +16,9 @@ auth.auth = function (action, params) {
     if (res.success !== false) {
       console.log(res);
       Store.commit('user', res);
-      console.log(Store.state.user);
       router.push('/dashboard');
+      this.getCourses();
+      this.getAllCourses();
     }
   }, params);
 };

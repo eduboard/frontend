@@ -25,11 +25,16 @@ new Vue({
   render: h => h(App),
 }).$mount('#app');
 
-const nonRestricted = ['login', 'imprint', 'register', 'landing', 'search'];
+const restricted = [
+  // 'search',
+  // 'course',
+  // 'dashboard',
+  // 'profile'
+];
 const onlyLoggedOut = ['login', 'register'];
 
 router.beforeEach((to, from, next) => {
-  if (!Store.state.user.email && !nonRestricted.includes(to.name)) {
+  if (!Store.state.user.email && restricted.includes(to.name)) {
     next('/login');
   } else if (Store.state.user.email && onlyLoggedOut.includes(to.name)) {
     next('/dashboard');
