@@ -26,10 +26,10 @@ new Vue({
 }).$mount('#app');
 
 const restricted = [
-  // 'search',
-  // 'course',
-  // 'dashboard',
-  // 'profile'
+  'search',
+  'course',
+  'dashboard',
+  'profile'
 ];
 const onlyLoggedOut = ['login', 'register'];
 

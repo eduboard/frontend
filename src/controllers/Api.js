@@ -44,7 +44,7 @@ auth.logout = function () {
 auth.getSelf = function (callback = null) {
   console.log('Called getUser');
   const userExisted = Boolean(Store.state.user.mail);
-  this.request('GET', `${apiUrl}/me/`, (res) => {
+  this.request('GET', `${apiUrl}/me`, (res) => {
     if (res.success !== false) {
       Store.commit('user', res);
       if (!userExisted) {
@@ -66,7 +66,7 @@ auth.getSelf = function (callback = null) {
 auth.getCourses = function () {
   console.log('Called getcourses');
   const userId = Store.state.user.id;
-  this.request('GET', `${apiUrl}/users/${userId}/courses/`, (res) => {
+  this.request('GET', `${apiUrl}/users/${userId}/courses`, (res) => {
     if (res.success !== false) {
       Store.commit('courses', res);
     }
@@ -79,7 +79,7 @@ auth.getCourses = function () {
  */
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
-  this.request('GET', `${apiUrl}/courses/`, (res) => {
+  this.request('GET', `${apiUrl}/courses`, (res) => {
     if (res.success !== false) {
       Store.commit('allCourses', res);
     }
