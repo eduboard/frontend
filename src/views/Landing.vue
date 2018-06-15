@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="container landing">
+  <div class="container">
+    <div class="landing">
       <h1 class="">Landing Page</h1>
       <h2> The landing page of the firm implementing this would be visible here.</h2>
       <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum commodi
