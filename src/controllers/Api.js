@@ -32,6 +32,7 @@ auth.logout = function () {
     if (res.success !== false) {
       console.log('Logout successful');
       router.push('/');
+      document.cookie = 'sessionID=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     }
   });
 };
