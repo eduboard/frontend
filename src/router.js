@@ -38,7 +38,7 @@ export default new Router({
       component: Dashboard,
     },
     {
-      path: '/course/:courseid',
+      path: '/courses/:id',
       name: 'course',
       component: Course,
     },

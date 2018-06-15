@@ -22,10 +22,6 @@
               to="/search">Kurssuche</router-link>
               <router-link tag="li" class="controls__navigation__item"
               to="/imprint">Imprint</router-link>
-
-              <!-- <router-link v-for="tab in tabs" :key="tab.name" tag="li" -->
-              <!-- class="controls__navigation__item" :to="tab.url" -->
-              <!-- >{{tab.name}}</router-link> -->
             </ul>
           </nav>
         </div>
@@ -41,7 +37,6 @@
 
           <nav class="controls__navigation">
             <ul>
-
               <router-link v-if="$store.state.user.role === 'teacher'" tag="li"
               class="controls__navigation__item"
               to="/course-management">Kursverwaltung</router-link>
@@ -59,12 +54,6 @@
               <router-link v-if="!$store.state.user.email"
               tag="li" class="controls__navigation__item"
               to="/register">Register</router-link>
-
-             <!-- <div v-for="tab in controls" :key="tab.name">
-                <router-link ng-if="tab.type === 'main'" tag="li"
-                class="controls__navigation__item" :to="tab.url"
-                >{{tab.name}}</router-link>
-              </div> -->
             </ul>
           </nav>
         </div>

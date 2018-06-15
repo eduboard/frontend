@@ -1,15 +1,10 @@
 <template>
   <div class="coursepage">
     <div class="container">
-      <h1 class="coursepage__title">Course title</h1>
+      <h1 class="coursepage__title">{{course.title}}</h1>
       <div class="coursepage__start">
         <p class="coursepage__start__description">
-          Kursbeschreibung: Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit. Reprehenderit nulla quidem, neque suscipit. Ad dignissimos commodi
-          eveniet obcaecati nemo deserunt, quo ipsum minima culpa, doloribus aliquam
-          adipisci laborum nihil quasi nostrum dolorum et sapiente est deleniti.
-          Error unde autem quod incidunt officia! Ex excepturi eius distinctio
-          quidem itaque, nostrum quia?
+          {{course.description}}
         </p>
         <MessageSidebar class="dashboard__sidebar"
           :chats="chats"
@@ -29,6 +24,9 @@ export default {
   },
   data() {
     return {
+      course: this.$store.state.courses.find(course =>
+        course.id === this.$route.params.id)
+      || { title: '404' },
       chats: [
         {
           text: 'Ankündigungen',
@@ -57,7 +55,6 @@ export default {
   &__start {
 
     display: flex;
-    // align-content: space-around;
 
     &__description {
 

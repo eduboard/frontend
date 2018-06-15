@@ -81,7 +81,7 @@ auth.getAllCourses = function () {
   console.log('Called getAllCourses');
   this.request('GET', `${apiUrl}/courses`, (res) => {
     if (res.success !== false) {
-      Store.commit('allCourses', res);
+      Store.commit('courses', res);
     }
   });
 };
