@@ -2,12 +2,14 @@
   <div class="container">
     <div class="overview">
 
-      <Searchbar class="overview__search" filler="Nach Kursen suchen..."></Searchbar>
+      <Searchbar class="overview__search" filler="Nach Kursen suchen..."
+        v-on:text="searchText = $event"
+      ></Searchbar>
 
       <ul class="overview__courses">
 
-        <li v-for="course in $store.state.allCourses" :key="course.id"
-          class="overview__course card course">
+        <li v-for="course in allCourses"
+          :key="course.id" class="overview__course card course">
 
           <div class="card__content">
             <h3>{{course.title}}</h3>
@@ -30,12 +32,12 @@ export default {
   },
   data() {
     return {
-      search: ''
+      searchText: ''
     };
   },
   computed: {
     allCourses() {
-      return this.$store.state.allCourses;
+      return this.$store.getters.getCoursesFiltered(this.searchText);
     }
   }
 };

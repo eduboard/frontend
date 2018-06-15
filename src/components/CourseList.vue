@@ -1,7 +1,7 @@
 <template>
 <ul class="dashboard__courses">
 
-  <li v-for="(course, index) in $store.state.courses" :key="index"
+  <li v-for="(course, index) in courses" :key="index"
   class="dashboard__course course card" :class="{new: course.isNew}">
 
     <div class="card__content">
@@ -25,7 +25,10 @@
 
 <script>
 export default {
-  name: 'courselist'
+  name: 'courselist',
+  props: {
+    courses: Array
+  }
 };
 </script>
 

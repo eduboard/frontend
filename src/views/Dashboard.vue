@@ -3,11 +3,13 @@
 
     <main class="container dashboard">
 
-      <CourseList></CourseList>
+      <CourseList :courses="courses"></CourseList>
 
       <aside class="dashboard__sidebar">
 
-        <Searchbar filler="Kurse durchsuchen..."></Searchbar>
+        <Searchbar filler="Kurse durchsuchen..."
+          v-on:text="searchText = $event"
+        ></Searchbar>
 
         <div>
           <h2>Nachrichten</h2>
@@ -33,6 +35,7 @@ export default {
   },
   data() {
     return {
+      searchText: '',
       chats: [
         {
           text: 'A1 Spanisch: Nachrichtenforum',
@@ -51,6 +54,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    courses() {
+      return this.$store.getters.getPrivateCoursesFiltered(this.searchText);
+    }
   }
 };
 </script>

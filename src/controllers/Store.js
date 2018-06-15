@@ -84,7 +84,9 @@ const Store = new Vuex.Store({
           a[j] = x;
         }
         c.files = a;
-        c.description += ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic magni quasi ducimus ipsa soluta, quod dicta maxime dolores alias esse.';
+        c.description += ` Lorem ipsum dolor sit amet,
+consectetur adipisicing elit. Hic magni quasi ducimus ipsa soluta,
+quod dicta maxime dolores alias esse.`;
       }
       state.courses = courses;
     },
@@ -101,8 +103,11 @@ const Store = new Vuex.Store({
    */
   getters: {
     getCoursesFiltered: state => string =>
-      state.allCourses.find(course =>
-        course.name.title.toLowerCase().startWith(string.toLowerCase()))
+      state.allCourses.filter(course =>
+        course.title.toLowerCase().startsWith(string.toLowerCase())),
+    getPrivateCoursesFiltered: state => string =>
+      state.courses.filter(course =>
+        course.title.toLowerCase().startsWith(string.toLowerCase()))
   }
 });
 
