@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <div class="overview">
+    <div class="coursesearch">
 
-      <Searchbar class="overview__search" filler="Nach Kursen suchen..."
+      <Searchbar class="coursesearch__search" filler="Nach Kursen suchen..."
         v-on:text="searchText = $event"
       ></Searchbar>
 
-      <ul class="overview__courses">
+      <ul class="coursesearch__courses">
 
         <li v-for="course in allCourses"
-          :key="course.id" class="overview__course card course">
+          :key="course.id" class="coursesearch__course card course">
 
           <div class="card__content">
             <h3>{{course.title}}</h3>
@@ -43,5 +43,44 @@ export default {
 };
 </script>
 
-<style>
+
+<style lang="scss">
+
+@import "../styles/utility";
+@import "../styles/ui/container";
+@import "../styles/settings";
+
+.coursesearch {
+
+  &__search {
+    font-size: 2rem;
+    margin: 2rem;
+  }
+
+  &__courses {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__course {
+    margin: 0 $spacing-x-small ($spacing-x-small * 2);
+
+    @include break(mobile) {
+      max-width: calc(#{(100% / 2)} - #{$spacing-x-small * 2});
+    }
+
+    @include break(tablet-l) {
+      margin: 0 $spacing-base ($spacing-base * 2);
+      max-width: calc(#{(100% / 3)} - #{$spacing-base * 2});
+    }
+
+    @include break(desktop) {
+      max-width: calc(#{(100% / 4)} - #{$spacing-base * 2});
+    }
+  }
+}
+
 </style>

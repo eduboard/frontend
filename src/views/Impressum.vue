@@ -38,5 +38,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
 
+@import "../styles/utility";
+@import "../styles/ui/container";
+@import "../styles/settings";
+
+</style>

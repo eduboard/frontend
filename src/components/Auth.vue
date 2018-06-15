@@ -72,4 +72,15 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+
+@import "../styles/utility";
+@import "../styles/ui/container";
+@import "../styles/settings";
+
+.auth {
+  margin-top: 8rem;
+  padding-bottom: 10rem;
+}
+
+</style>

@@ -74,4 +74,190 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+
+@import "../styles/utility";
+@import "../styles/ui/container";
+@import "../styles/settings";
+
+.controls {
+  background: $color-ui linear-gradient(115deg, $color-ui, $color-ui-h);
+  color: $color-base;
+  padding: $spacing-small 0 0;
+  position: relative;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+
+    &--large,
+    &--small {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--large {
+      flex: 1 1 1400px;
+
+    }
+
+    &--small {
+      flex: 1 1 300px;
+
+      @include break(tablet-l) {
+        flex-shrink: 0;
+      }
+
+      p {
+        &:only-child {
+          color: rgba(colorInvert($color-ui), 0.5);
+          margin: auto 0 $spacing-small 0;
+          text-align: right;
+        }
+
+        a {
+          border-bottom: 1px solid transparent;
+          color: colorInvert($color-ui);
+          font-weight: bold;
+          text-decoration: none;
+          transition: all $transition;
+
+          &:hover {
+            border-bottom: 1px solid;
+          }
+        }
+      }
+    }
+  }
+
+
+  &__logo {
+    font-size: 1.5rem;
+    line-height: 1;
+    margin: 0.5rem 0 1.5rem 48px;
+
+
+    @include break(tablet-l) {
+      font-size: $fs-x-large;
+      margin: 0.5rem 0 $spacing-small 0;
+    }
+  }
+
+
+  &__navigation {
+    display: none;
+    margin-left: -$padding-x;
+    margin-top: auto;
+
+
+    @include break(tablet-l) {
+      display: block;
+    }
+
+
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__item {
+      line-height: 1;
+
+      color: rgba(colorInvert($color-ui), 0.5);
+      cursor: pointer;
+      display: block;
+      font-weight: 700;
+      padding: $spacing-small $padding-x $spacing-small;
+      position: relative;
+      text-decoration: none;
+      transition: all $transition;
+
+      &:hover {
+        color: $color-bg;
+      }
+
+      &::after {
+        border-top: 3px solid $color-base;
+        bottom: 0;
+        content: '';
+        display: none;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+
+      &.router-link-active {
+        color: $color-base;
+        cursor: default;
+
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+
+
+  &__menu-button {
+    background: transparent !important;
+    color: colorInvert($color-ui);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 20px;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    width: 24px;
+
+    span {
+      border-bottom: 2px solid;
+      border-radius: 2px;
+      display: block;
+      width: inherit;
+    }
+
+
+    @include break(tablet-l) {
+      display: none;
+    }
+  }
+
+
+  &__user {
+    align-items: center;
+    display: none;
+    justify-content: space-between;
+
+
+    @include break(tablet-l) {
+      display: flex;
+    }
+
+
+    &__name {
+      display: block;
+      font-size: $fs-large;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    &__image {
+      align-items: center;
+      background: $color-base;
+      border-radius: 50%;
+      color: $color-ui;
+      display: flex;
+      flex: 0 0 50px;
+      font-weight: 700;
+      height: 50px;
+      justify-content: center;
+      margin-left: $spacing-large;
+    }
+  }
+}
+
+</style>

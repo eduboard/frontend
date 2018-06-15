@@ -32,6 +32,21 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
+@import "../styles/utility";
+@import "../styles/settings";
+
+.course {
+  margin-bottom: $spacing-x-small;
+
+  @include break(tablet-l) {
+    margin-bottom: $spacing-base;
+  }
+
+  @include break(desktop) {
+    display: flex;
+  }
+}
 
 </style>

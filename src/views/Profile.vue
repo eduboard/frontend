@@ -51,6 +51,10 @@ export default {
 
 <style lang="scss">
 
+@import "../styles/utility";
+@import "../styles/ui/container";
+@import "../styles/settings";
+
 .profile {
 
   &__picture {

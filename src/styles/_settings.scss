@@ -1,0 +1,15 @@
+$color-primary: #000000;
+$color-soft:    #BAC2CA;
+$color-text:    #70808E;
+$color-bg:      #F0F0F0;
+$color-accent:  #E91E63;
+$color-ui:      #3F51B5;
+$color-ui-h:    mix($color-ui, $color-accent, 80%);
+$color-neutral: #FFEB3B;
+
+$fs-document:   15px;
+
+$fs-large:      1.375rem;
+$fs-x-large:    2rem;
+
+$spacing-x-large: $spacing-large + $spacing-base;
