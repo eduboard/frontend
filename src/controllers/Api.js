@@ -1,7 +1,8 @@
-import Store from './Store';
+import { Store } from './Store';
+import router from '../router';
 
-const authUrl = 'https://eduboard.io/api/';
-const apiUrl = 'https://eduboard.io/api/v1/';
+const authUrl = 'https://eduboard.io/api';
+const apiUrl = 'https://eduboard.io/api/v1';
 
 const auth = {};
 
@@ -11,11 +12,13 @@ const auth = {};
  */
 auth.auth = function (action, params) {
   console.log(`Called ${action}`);
-  this.request('POST', `${authUrl}${action}`, (res) => {
+  this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
       console.log(res);
       Store.commit('user', res);
-      this.$router.push('/dashboard');
+      router.push('/dashboard');
+      this.getCourses();
+      this.getAllCourses();
     }
   }, params);
 };
@@ -25,10 +28,10 @@ auth.auth = function (action, params) {
  */
 auth.logout = function () {
   console.log('Called logout');
-  this.request('POST', `${authUrl}logout`, (res) => {
+  this.request('POST', `${authUrl}/logout`, (res) => {
     if (res.success !== false) {
       console.log('Logout successful');
-      this.$router.push('/');
+      router.push('/');
     }
   });
 };
@@ -38,9 +41,9 @@ auth.logout = function () {
  * Failure to fetch user will redirect to the login page,
  * if the URL is neither imprint nor landing
  */
-auth.getSelf = function () {
+auth.getSelf = function (callback = null) {
   console.log('Called getUser');
-  const userExisted = !!Store.state.user.mail;
+  const userExisted = Boolean(Store.state.user.mail);
   this.request('GET', `${apiUrl}/me`, (res) => {
     if (res.success !== false) {
       Store.commit('user', res);
@@ -48,6 +51,9 @@ auth.getSelf = function () {
         this.getCourses();
         this.getAllCourses();
       }
+      if (callback) callback(true);
+    } else if (callback) {
+      callback(false);
     }
   });
 };
@@ -60,8 +66,10 @@ auth.getSelf = function () {
 auth.getCourses = function () {
   console.log('Called getcourses');
   const userId = Store.state.user.id;
-  this.request('GET', `${apiUrl}/users/${userId}/courses/`, (res) => {
-    Store.commit('user', res);
+  this.request('GET', `${apiUrl}/users/${userId}/courses`, (res) => {
+    if (res.success !== false) {
+      Store.commit('courses', res);
+    }
   });
 };
 
@@ -71,8 +79,10 @@ auth.getCourses = function () {
  */
 auth.getAllCourses = function () {
   console.log('Called getAllCourses');
-  this.request('GET', `${apiUrl}`, (res) => {
-    Store.commit('user', res);
+  this.request('GET', `${apiUrl}/courses`, (res) => {
+    if (res.success !== false) {
+      Store.commit('courses', res);
+    }
   });
 };
 
@@ -85,6 +95,7 @@ auth.getAllCourses = function () {
  */
 auth.request = function (method, url, callback, body) {
   const req = new XMLHttpRequest();
+  req.withCredentials = true;
   req.onreadystatechange = function onResponse() {
 
     // Once the request is finished
@@ -95,12 +106,13 @@ auth.request = function (method, url, callback, body) {
         || this.responseText[0] === '[') {
         callback(JSON.parse(this.responseText));
 
-      // If Unauthorized (401)
-      } else if (this.status === 401) {
-        // TODO Router redirect to login
+      // If Unauthorized (401) redirect to login
+      } else if (this.status === 401 || this.status === 403) {
+        Store.commit('user', {});
+        router.push('/login');
 
-      // If Server Fault (500)
-      } else if (this.status === 401) {
+      // If Server Fault (500) display error
+      } else if (this.status === 500) {
         // TODO Display warning message to client
         console.log('Server error');
 

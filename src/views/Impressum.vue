@@ -32,9 +32,9 @@
 
 <script>
 export default {
+  name: 'impressum',
   components: {
   },
-  name: 'impressum',
 };
 </script>
 

@@ -6,14 +6,15 @@
 
       <ul class="overview__courses">
 
-        <li class="overview__course card course">
+        <li v-for="course in $store.state.allCourses" :key="course.id"
+          class="overview__course card course">
+
           <div class="card__content">
-            <h3>Lineare Algebra II</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At, quia.</p>
+            <h3>{{course.title}}</h3>
+            <p>{{course.description}}</p>
             <button class="button">Anmelden</button>
           </div>
         </li>
-
       </ul>
     </div>
   </div>
@@ -26,6 +27,11 @@ export default {
   name: 'search',
   components: {
     Searchbar
+  },
+  data() {
+    return {
+      search: ''
+    };
   },
   computed: {
     allCourses() {

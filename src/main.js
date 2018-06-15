@@ -1,7 +1,6 @@
-import Vue from 'vue';
+import { Store, Vue } from './controllers/Store';
 import App from './App.vue';
 import router from './router';
-import Store from './controllers/Store';
 import Api from './controllers/Api';
 
 Vue.config.productionTip = false;
@@ -22,15 +21,23 @@ Vue.use({
 
 new Vue({
   router,
+  store: Store,
   render: h => h(App),
 }).$mount('#app');
 
-// router.beforeEach((to, from, next) => {
-//   console.log('to');
-//   if (!Store.state.user.email && !to.includes('imprint')
-//     && !to.includes('landing') && !to.includes('login')
-//     && !to.includes('register')) {
-//     // next();
-//   }
-//   next();
-// });
+const restricted = [
+  'search',
+  'course',
+  'dashboard',
+  'profile'
+];
+const onlyLoggedOut = ['login', 'register'];
+
+router.beforeEach((to, from, next) => {
+  if (!Store.state.user.email && restricted.includes(to.name)) {
+    next('/login');
+  } else if (Store.state.user.email && onlyLoggedOut.includes(to.name)) {
+    next('/dashboard');
+  }
+  next();
+});

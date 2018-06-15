@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Course from './views/Course.vue';
 import Dashboard from './views/Dashboard.vue';
 import Impressum from './views/Impressum.vue';
 import Landing from './views/Landing.vue';
@@ -35,6 +36,11 @@ export default new Router({
       path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
+    },
+    {
+      path: '/courses/:id',
+      name: 'course',
+      component: Course,
     },
     {
       path: '/profile',
