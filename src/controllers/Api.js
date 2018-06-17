@@ -4,6 +4,13 @@ import router from '../router';
 const authUrl = 'https://eduboard.io/api';
 const apiUrl = 'https://eduboard.io/api/v1';
 
+const endpoints = {
+  // eslint-disable-next-line
+  courses: '/users/${userId}/courses',
+  allCourses: '/courses',
+  users: '/users'
+};
+
 const auth = {};
 
 /**
@@ -15,10 +22,10 @@ auth.auth = function (action, params) {
   this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
       console.log(res);
-      Store.commit('user', res);
+      Store.commit('set', 'user', res);
       router.push('/dashboard');
-      this.getCourses();
-      this.getAllCourses();
+      this.get('courses');
+      this.get('allCourses');
     }
   }, params);
 };
@@ -47,10 +54,11 @@ auth.getSelf = function (callback = null) {
   const userExisted = Boolean(Store.state.user.mail);
   this.request('GET', `${apiUrl}/me`, (res) => {
     if (res.success !== false) {
-      Store.commit('user', res);
+      res.getterName = 'user';
+      Store.commit('set', res);
       if (!userExisted) {
-        this.getCourses();
-        this.getAllCourses();
+        this.get('courses');
+        this.get('allCourses');
       }
       if (callback) callback(true);
     } else if (callback) {
@@ -60,29 +68,23 @@ auth.getSelf = function (callback = null) {
 };
 
 /**
- * Gets the full list of courses pertaining to the user,
- * that is used to populate the dashboard and the course views.
- * Will be fetched on first dashboard entry.
+ * Updates the local state with the remote state via GET response.
+ * Will inject dynamic data with evil.
  */
-auth.getCourses = function () {
-  console.log('Called getcourses');
+auth.get = function (name) {
+  console.log(`Called GET ${name}`);
+  // eslint-disable-next-line
   const userId = Store.state.user.id;
-  this.request('GET', `${apiUrl}/users/${userId}/courses`, (res) => {
+  // eslint-disable-next-line
+  const endpoint = `\`${apiUrl}${endpoints[name]}\``;
+  // eslint-disable-next-line
+  this.request('GET', eval(endpoint), (res) => {
     if (res.success !== false) {
-      Store.commit('courses', res);
-    }
-  });
-};
-
-/**
- * Gets all publicly available courses from the server,
- * as a list of title, description and time period.
- */
-auth.getAllCourses = function () {
-  console.log('Called getAllCourses');
-  this.request('GET', `${apiUrl}/courses`, (res) => {
-    if (res.success !== false) {
-      Store.commit('courses', res);
+      res.getterName = name;
+      Store.commit('set', res);
+    } else {
+      // TODO display failed message
+      console.log(`Failed getting ${name}`);
     }
   });
 };

@@ -210,16 +210,5 @@ h2 {
   }
 }
 
-.course {
-  margin-bottom: $spacing-x-small;
-
-  @include break(tablet-l) {
-    margin-bottom: $spacing-base;
-  }
-
-  @include break(desktop) {
-    display: flex;
-  }
-}
 
 </style>
