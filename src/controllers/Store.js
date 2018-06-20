@@ -6,40 +6,9 @@ Vue.use(Vuex);
 const Store = new Vuex.Store({
   state: {
     user: {},
-    // allCourses: [
-    //   {
-    //     title: 'Stoachstik für Infomagiker',
-    //     id: '0',
-    //     description: ''
-    //   },
-    //   {
-    //     title: 'Lineare Algebra I',
-    //     id: '1',
-    //     description: ''
-    //   },
-    //   {
-    //     title: 'Lineare Algebra II',
-    //     id: '2',
-    //     description: ''
-    //   },
-    //   {
-    //     title: 'Prokrastinieren für Anfänger',
-    //     id: '3',
-    //     description: ''
-    //   },
-    //   {
-    //     title: 'Spanish für Informatiker',
-    //     id: '4',
-    //     description: ''
-    //   },
-    //   {
-    //     title: 'Russisch für Counter Strike Spieler',
-    //     id: '5',
-    //     description: ''
-    //   }
-    // ],
     allCourses: [],
-    courses: []
+    courses: [],
+    users: []
   },
   /**
    * Mutations are setters for the state store.
@@ -50,7 +19,10 @@ const Store = new Vuex.Store({
       const name = object.getterName;
       delete object.getterName;
       state[name] = object;
-    }
+    },
+    // addCourse(state, object) {
+    // state.courses.push(object)
+    // }
   },
   /**
    * These are computed properties based on the current state.

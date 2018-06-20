@@ -5,10 +5,9 @@ const authUrl = 'https://eduboard.io/api';
 const apiUrl = 'https://eduboard.io/api/v1';
 
 const endpoints = {
-  // eslint-disable-next-line
-  courses: '/users/${userId}/courses',
-  allCourses: '/courses',
-  users: '/users'
+  courses: ctx => `/users/${ctx.userId}/courses`,
+  allCourses: _ => '/courses',
+  users: _ => '/users'
 };
 
 const auth = {};
@@ -73,12 +72,11 @@ auth.getSelf = function (callback = null) {
  */
 auth.get = function (name) {
   console.log(`Called GET ${name}`);
-  // eslint-disable-next-line
-  const userId = Store.state.user.id;
-  // eslint-disable-next-line
-  const endpoint = `\`${apiUrl}${endpoints[name]}\``;
-  // eslint-disable-next-line
-  this.request('GET', eval(endpoint), (res) => {
+  const context = {
+    userId: Store.state.user.id
+  }
+  const endpoint = `${apiUrl}${endpoints[name](context)}`;
+  this.request('GET', endpoint, (res) => {
     if (res.success !== false) {
       res.getterName = name;
       Store.commit('set', res);
