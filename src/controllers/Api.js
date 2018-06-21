@@ -6,8 +6,8 @@ const apiUrl = 'https://eduboard.io/api/v1';
 
 const endpoints = {
   courses: ctx => `/users/${ctx.userId}/courses`,
-  allCourses: _ => '/courses',
-  users: _ => '/users'
+  allCourses: () => '/courses',
+  users: () => '/users'
 };
 
 const auth = {};
@@ -74,7 +74,7 @@ auth.get = function (name) {
   console.log(`Called GET ${name}`);
   const context = {
     userId: Store.state.user.id
-  }
+  };
   const endpoint = `${apiUrl}${endpoints[name](context)}`;
   this.request('GET', endpoint, (res) => {
     if (res.success !== false) {
