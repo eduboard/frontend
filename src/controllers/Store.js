@@ -35,6 +35,9 @@ const Store = new Vuex.Store({
     getPrivateCoursesFiltered: state => string =>
       state.courses.filter(course =>
         (new RegExp(string.toLowerCase())).test(course.title.toLowerCase())),
+    getCourseFiles: state => id =>
+      state.courses.find(cor => cor.id === id).items.filter(item =>
+        item.type === 'file'),
   }
 });
 

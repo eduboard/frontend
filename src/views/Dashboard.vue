@@ -1,5 +1,5 @@
 <template>
-  <div id="dashboard">
+  <div id="dashboard" class="dashboard">
 
     <main class="container dashboard">
 
@@ -57,7 +57,7 @@ export default {
   },
   computed: {
     courses() {
-      return this.$store.getters.getPrivateCoursesFiltered(this.searchText);
+      return this.$store.getters.getCoursesFiltered(this.searchText);
     }
   }
 };
@@ -71,7 +71,6 @@ export default {
 
 .dashboard {
   padding-top: $padding-section / 2;
-
 
   @include break(tablet-l, max) {
     padding-left: $spacing-x-small;

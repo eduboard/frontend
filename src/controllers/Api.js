@@ -109,7 +109,7 @@ auth.request = function (method, url, callback, body) {
 
       // If Unauthorized (401) redirect to login
       } else if (this.status === 401 || this.status === 403) {
-        Store.commit('user', {});
+        Store.commit('set', { getterName: 'user' });
         router.push('/login');
 
       // If Server Fault (500) display error
