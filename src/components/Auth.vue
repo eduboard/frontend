@@ -13,6 +13,22 @@
                autofocus>
         <label class="form__text" for="emailInput">E-Mail-Adresse</label>
       </div>
+      <div class="form__item appear-later" v-if="action === 'register'">
+        <input class="form__input"
+               type="surname"
+               placeholder="Vorname"
+               id="surnameInput"
+               v-model="surname">
+        <label class="form__text" for="surnameInput">Vorname</label>
+      </div>
+      <div class="form__item appear-later" v-if="action === 'register'">
+        <input class="form__input"
+               type="name"
+               placeholder="Nachname"
+               id="nameInput"
+               v-model="name">
+        <label class="form__text" for="nameInput">Nachname</label>
+      </div>
       <div class="form__item">
         <input class="form__input"
                type="password"
@@ -57,6 +73,8 @@ export default {
   data() {
     return {
       email: '',
+      surname: '',
+      name: '',
       password: ''
     };
   },
@@ -65,6 +83,8 @@ export default {
     evaluateAction() {
       this.$api.auth(this.action, {
         email: this.email,
+        surname: this.surname,
+        name: this.name,
         password: this.password
       });
     },
