@@ -10,23 +10,30 @@
           :chats="chats"
         ></MessageSidebar>
       </div>
+      <Timeline :items=course.entries></Timeline>
     </div>
   </div>
 </template>
 
 <script>
 import MessageSidebar from '../components/MessageSidebar.vue';
+import Timeline from '../components/Timeline.vue';
 
 export default {
   name: 'course',
   components: {
-    MessageSidebar
+    MessageSidebar,
+    Timeline
+  },
+  computed: {
+    course() {
+      return this.$store.state.allCourses.find(course =>
+        course.id === this.$route.params.id)
+        || { title: '404' };
+    }
   },
   data() {
     return {
-      course: this.$store.state.courses.find(course =>
-        course.id === this.$route.params.id)
-      || { title: '404' },
       chats: [
         {
           text: 'Ankündigungen',

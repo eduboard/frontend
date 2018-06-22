@@ -1,20 +1,33 @@
 <template>
 <div class="timeline">
 
-  <!-- Separator Line -->
-  <span class="timeline__separator"></span>
+  <!-- Timeline Items -->
+  <div v-for="(item, index) in items" :key="index"
+  class="timeline__course">
 
-  <!-- Description -->
+    <!-- Separator Line -->
+    <div class="timeline__separator"></div>
 
-  <!-- List for files/images/videos -->
-  <ul class="timeline__list">
+    <!-- Description -->
+    <p class="timeline__date">
+      {{$store.getters.dateStringFromTime(item.date)}}
+    </p>
+    <p class="timeline__description">
+      {{item.message}}
+    </p>
 
-    <li v-for="(item, index) in courses" :key="index"
-    class="dashboard__course course card" :class="{new: course.isNew}">
+    <!-- Files -->
+    <ul class="dashboard__course__files">
+      <li v-for="(file, index2) in item.files" :key="index2"
+        class="dashboard__course__file"> {{file.name}}
+        <a :href="file.link"></a>
+      </li>
+    </ul>
 
-    </li>
-  </ul>
-
+    <!-- Images -->
+    <img v-for="(image, index3) in item.pictures" :key="index3"
+      :src="image" class="timeline__image">
+  </div>
 </div>
 </template>
 
@@ -22,18 +35,8 @@
 export default {
   name: 'timeline',
   props: {
-    // items: Array
+    items: Array
   },
-  data() {
-    return {
-      items: [
-        {
-          type: 'text',
-
-        }
-      ]
-    };
-  }
 };
 </script>
 
@@ -45,7 +48,15 @@ export default {
 .timeline {
 
   &__separator {
-    border-top: 1px solid;
+    border-top: 1px solid $color-text;
+  }
+
+  &__date {
+    font-weight: 700;
+  }
+
+  &__image {
+    border: 1px solid red;
   }
 
 }
