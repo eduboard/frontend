@@ -10,7 +10,7 @@
           :chats="chats"
         ></MessageSidebar>
       </div>
-      <Timeline :items=course.entries></Timeline>
+      <Timeline class="coursepage__timeline" :items=course.entries></Timeline>
     </div>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     course() {
-      return this.$store.state.allCourses.find(course =>
+      return this.$store.state.courses.find(course =>
         course.id === this.$route.params.id)
         || { title: '404' };
     }
@@ -67,10 +67,9 @@ export default {
   &__start {
 
     display: flex;
+    justify-content: space-between;
 
     &__description {
-
-      margin-right: 5rem;
 
     }
 
@@ -78,6 +77,11 @@ export default {
 
     }
 
+  }
+
+  &__timeline {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
   }
 
 }

@@ -3,30 +3,46 @@
 
   <!-- Timeline Items -->
   <div v-for="(item, index) in items" :key="index"
-  class="timeline__course">
+  class="timeline__item">
 
     <!-- Separator Line -->
     <div class="timeline__separator"></div>
 
-    <!-- Description -->
-    <p class="timeline__date">
-      {{$store.getters.dateStringFromTime(item.date)}}
-    </p>
-    <p class="timeline__description">
-      {{item.message}}
-    </p>
+    <!-- Contains content so that it can have separate margin -->
+    <div class="timeline__container">
 
-    <!-- Files -->
-    <ul class="dashboard__course__files">
-      <li v-for="(file, index2) in item.files" :key="index2"
-        class="dashboard__course__file"> {{file.name}}
-        <a :href="file.link"></a>
-      </li>
-    </ul>
+      <!-- Date label -->
+      <p class="timeline__date">
+        {{$store.getters.dateStringFromTime(item.date)}}
+      </p>
+      <!-- Flexbox so that description and files are side by side -->
+      <div class="timeline__flex">
 
-    <!-- Images -->
-    <img v-for="(image, index3) in item.pictures" :key="index3"
-      :src="image" class="timeline__image">
+        <div class="">
+
+          <!-- Description -->
+          <p class="timeline__description">
+            {{item.message}}
+          </p>
+
+          <!-- Files -->
+          <ul class="dashboard__course__files">
+            <li v-for="(file, index2) in item.files" :key="index2"
+              class="dashboard__course__file"> {{file}}
+              <a href=""></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Images -->
+        <div class="">
+          <img v-for="(image, index3) in item.pictures" :key="index3"
+            :src="image" class="timeline__image">
+        </div>
+
+      </div>
+    </div>
+
   </div>
 </div>
 </template>
@@ -47,8 +63,17 @@ export default {
 
 .timeline {
 
+  &__container {
+    margin: 1rem 5rem 5rem;
+  }
+
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__separator {
-    border-top: 1px solid $color-text;
+    border-top: 2px solid grey;
   }
 
   &__date {

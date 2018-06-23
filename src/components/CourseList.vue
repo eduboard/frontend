@@ -30,10 +30,6 @@ export default {
     courses: Array
   },
   computed: {
-    courseFiles(index) {
-      console.log(index);
-      return this.$store.getters.getCourseFiles('5b1996378c98e652212c76bc');
-    }
   }
 };
 </script>
