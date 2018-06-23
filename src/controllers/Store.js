@@ -75,10 +75,8 @@ const Store = new Vuex.Store({
     // Get the file list of a course (useful for dashboard)
     getCourseFiles: state => id =>
       state.allCourses.find(cor => cor.id === id).entries.reduce(
-        (acc, e) => {
-          acc = acc.concat(e.files);
-          return true;
-        }
+        (acc, e) =>
+          acc.concat(e.files)
         , []
       ),
     dateStringFromTime: () => (time) => {
