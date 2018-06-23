@@ -153,7 +153,6 @@ export default {
     margin-left: $spacing-large * 2;
     flex: 0 0 ($container-width / 4);
 
-
     &__search {
       position: relative;
 
@@ -161,7 +160,6 @@ export default {
         padding: 0.75rem 0 0.75rem $fs-x-large * 1.25;
         width: 100%;
       }
-
 
       svg {
         top: 50%;
@@ -177,7 +175,6 @@ export default {
       margin-top: $spacing-x-small;
       width: 100%;
     }
-
 
     &__messages {
       list-style: none;

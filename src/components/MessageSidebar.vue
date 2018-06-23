@@ -16,9 +16,6 @@ export default {
   name: 'messagesidebar',
   props: {
     chats: Array
-  },
-  mount() {
-    console.log(this.chats);
   }
 };
 </script>

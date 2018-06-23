@@ -13,9 +13,7 @@
           <p class="coursepage__maincontent__description">
             {{course.description}}
           </p>
-          <div class="coursepage__maincontent__calendar">
-
-          </div>
+          <Calendar class="coursepage__maincontent__calendar"></Calendar>
         </div>
 
         <!-- Right part of the course -->
@@ -40,9 +38,9 @@
             :chats="chats"
           ></MessageSidebar>
 
-          <div class="dashboard__sidebar__count">
-
-          </div>
+          <h2 class="dashboard__sidebar__count">
+            5 Nutzer in diesem Kurs
+          </h2>
         </div>
       </div>
 
@@ -55,18 +53,20 @@
 <script>
 import MessageSidebar from '../components/MessageSidebar.vue';
 import Timeline from '../components/Timeline.vue';
+import Calendar from '../components/Calendar.vue';
 
 export default {
   name: 'course',
   components: {
     MessageSidebar,
-    Timeline
+    Timeline,
+    Calendar
   },
   computed: {
     course() {
       return this.$store.state.courses.find(course =>
         course.id === this.$route.params.id)
-        || { title: '404' };
+        || { title: 'Seite wird geladen... Bitte warten' };
     }
   },
   data() {
@@ -116,9 +116,13 @@ export default {
     }
 
     &__calendar {
-      width: 800px;
-      border: 5px solid red;
-      height: 300px;
+      width: 900px;
+      height: 360px;
+
+      @include break(desktop, max) {
+        display: none;
+      }
+
     }
   }
 
@@ -139,7 +143,8 @@ export default {
     }
 
     &__count {
-
+      margin-top: 1rem;
+      text-align: center;
     }
   }
 

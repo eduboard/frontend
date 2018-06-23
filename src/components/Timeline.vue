@@ -33,7 +33,7 @@
       </div>
 
       <!-- Images -->
-      <div class="timeline__images">
+      <div class="timeline__images" v-if="item.pictures">
         <img v-for="(image, index3) in item.pictures" :key="index3"
           :src="image" class="timeline__images__item">
       </div>
@@ -124,7 +124,6 @@ export default {
       max-width: 100%;
     }
   }
-
 }
 
 </style>

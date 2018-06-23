@@ -20,7 +20,7 @@ export default {
     forum() {
       return this.$store.state.courses.find(course =>
         course.id === this.$route.params.id)
-        || { title: '404' };
+        || { title: 'Forum wird geladen... Bitte warten' };
     }
   },
   data() {
