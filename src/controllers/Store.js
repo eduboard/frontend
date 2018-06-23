@@ -34,13 +34,13 @@ const Store = new Vuex.Store({
             }, {
               id: 'akl4tj3lk4ng',
               date: Date.now(),
-              message: 'This is another course entry',
+              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laborum veritatis, dignissimos aliquam voluptatum doloribus beatae, consequuntur tempore in cum.',
               pictures: ['testAnswers.png'],
               files: ['untergangDerWelt.pdf'],
             }, {
               id: 'asdfn34kl5j43',
               date: Date.now(),
-              message: 'This is a course entry',
+              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laborum praesentium? Suscipit culpa quas, aspernatur!',
               pictures: ['happy.png', 'testAnswers.png'],
               files: ['doom3.pdf', 'metal.pdf', 'mountain.pdf'].slice(0, counter),
             }

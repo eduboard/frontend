@@ -20,8 +20,8 @@ auth.auth = function (action, params) {
   console.log(`Called ${action}`);
   this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
-      console.log(res);
-      Store.commit('set', 'user', res);
+      res.getterName = 'user';
+      Store.commit('set', res);
       router.push('/dashboard');
       this.get('courses');
       this.get('allCourses');
@@ -35,11 +35,12 @@ auth.auth = function (action, params) {
 auth.logout = function () {
   console.log('Called logout');
   this.request('POST', `${authUrl}/logout`, (res) => {
-    if (res.success !== false) {
-      console.log('Logout successful');
-      router.push('/');
-      document.cookie = 'sessionID=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
+    console.log('Logout successful');
+    router.push('/landing');
+    Store.commit('set', {
+      getterName: 'user'
+    });
+    document.cookie = 'sessionID=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
   });
 };
 

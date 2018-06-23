@@ -18,28 +18,24 @@
       <!-- Flexbox so that description and files are side by side -->
       <div class="timeline__flex">
 
-        <div class="">
-
           <!-- Description -->
           <p class="timeline__description">
             {{item.message}}
           </p>
 
           <!-- Files -->
-          <ul class="dashboard__course__files">
+          <ul class="timeline__files">
             <li v-for="(file, index2) in item.files" :key="index2"
-              class="dashboard__course__file"> {{file}}
+              class="timeline__files__item"> {{file}}
               <a href=""></a>
             </li>
           </ul>
-        </div>
+      </div>
 
-        <!-- Images -->
-        <div class="">
-          <img v-for="(image, index3) in item.pictures" :key="index3"
-            :src="image" class="timeline__image">
-        </div>
-
+      <!-- Images -->
+      <div class="timeline__images">
+        <img v-for="(image, index3) in item.pictures" :key="index3"
+          :src="image" class="timeline__images__item">
       </div>
     </div>
 
@@ -67,11 +63,6 @@ export default {
     margin: 1rem 5rem 5rem;
   }
 
-  &__flex {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &__separator {
     border-top: 2px solid grey;
   }
@@ -80,8 +71,58 @@ export default {
     font-weight: 700;
   }
 
-  &__image {
-    border: 1px solid red;
+  &__flex {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__description {
+    flex: 0 0 70%;
+  }
+
+  &__files {
+
+
+    list-style: none;
+    margin: 1rem 0 0 -0.5rem;
+    padding: 0;
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    z-index: 10;
+
+    &__item {
+      align-items: center;
+      background: rgba($color-neutral, 0.3);
+      border-radius: 3px;
+      color: colorInvert($color-neutral);
+      display: flex;
+      font-size: $fs-small;
+      font-weight: 500;
+      line-height: 1;
+      margin: 0.3rem;
+      padding: 0.4rem 0.5rem 0.5rem;
+      position: relative;
+      transition: all $transition;
+
+      &:hover {
+        background: rgba($color-neutral, 1);
+      }
+
+      a {
+        @extend %absolute;
+      }
+    }
+  }
+
+  &__images {
+
+    &__item {
+      border: 1px solid red;
+      max-width: 100%;
+    }
   }
 
 }

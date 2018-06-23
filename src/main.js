@@ -30,7 +30,8 @@ const restricted = [
   'course',
   'dashboard',
   'profile',
-  'manage'
+  'manage',
+  'forum'
 ];
 const onlyLoggedOut = ['login', 'register'];
 
