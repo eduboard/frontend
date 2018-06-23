@@ -18,7 +18,7 @@
                type="surname"
                placeholder="Vorname"
                id="surnameInput"
-               v-model="surname">
+               v-model="name">
         <label class="form__text" for="surnameInput">Vorname</label>
       </div>
       <div class="form__item appear-later" v-if="action === 'register'">
@@ -26,7 +26,7 @@
                type="name"
                placeholder="Nachname"
                id="nameInput"
-               v-model="name">
+               v-model="surname">
         <label class="form__text" for="nameInput">Nachname</label>
       </div>
       <div class="form__item">

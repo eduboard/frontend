@@ -21,6 +21,9 @@ const Store = new Vuex.Store({
       state[name] = object;
 
       let counter = 0;
+      if (name === 'user') {
+        object.role = 'teacher';
+      }
       if (name === 'courses') {
         // eslint-disable-next-line
         for (const c of object) {
@@ -29,7 +32,7 @@ const Store = new Vuex.Store({
               id: 'asd233wrfs3',
               date: Date.now(),
               message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque molestiae eaque tempore, amet facilis laudantium, officia repellat magni, porro sunt ipsa, fuga dicta quasi blanditiis ullam beatae. Saepe distinctio non nam molestiae mollitia, id ratione, adipisci odio facere aliquam expedita, accusantium fuga ipsa illo cumque. Dolores ea, assumenda. Tenetur, officia.',
-              pictures: ['happy.png', 'testAnswers.png'],
+              // pictures: ['happy.png', 'testAnswers.png'],
               files: ['abgabeTextTest.pdf'],
             }, {
               id: 'akl4tj3lk4ng',

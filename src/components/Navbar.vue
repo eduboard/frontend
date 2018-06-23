@@ -263,6 +263,7 @@ export default {
       font-size: $fs-large;
       font-weight: 700;
       line-height: 1;
+      text-transform: capitalize;
     }
 
     &__image {
@@ -276,6 +277,7 @@ export default {
       height: 50px;
       justify-content: center;
       margin-left: $spacing-large;
+      text-transform: uppercase;
     }
   }
 }
