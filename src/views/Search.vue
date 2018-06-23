@@ -59,13 +59,19 @@ export default {
 
   &__courses {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
     padding: 0;
+
+    @include break(tablet-l) {
+      justify-content: space-between;
+    }
   }
 
   &__course {
+    min-width: 420px;
     margin: 0 $spacing-x-small ($spacing-x-small * 2);
 
     @include break(mobile) {

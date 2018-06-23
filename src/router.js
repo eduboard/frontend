@@ -59,7 +59,7 @@ export default new Router({
       component: Search,
     },
     {
-      path: '/forum',
+      path: '/forums/:id',
       name: 'forum',
       component: Forum,
     },

@@ -6,7 +6,7 @@
       <p>{{chat.text}}</p>
       <span>{{chat.last}}</span>
     </div>
-    <a href="" class="card__link"></a>
+    <a :href="'/#/forums/' + chat.id" class="card__link"></a>
   </li>
 </ul>
 </template>

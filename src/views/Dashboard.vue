@@ -7,12 +7,12 @@
 
       <aside class="dashboard__sidebar">
 
-        <Searchbar filler="Kurse durchsuchen..."
+        <Searchbar class="dashboard__searchbar" filler="Kurse durchsuchen..."
           v-on:text="searchText = $event"
         ></Searchbar>
 
         <div>
-          <h2>Nachrichten</h2>
+          <h2 class="dashboard__searchbar">Nachrichten</h2>
           <MessageSidebar :chats="chats"></MessageSidebar>
         </div>
 
@@ -38,16 +38,19 @@ export default {
       searchText: '',
       chats: [
         {
+          id: '5b1996378c98e652212c76b6',
           text: 'A1 Spanisch: Nachrichtenforum',
           last: '2 ungelesene Nachrichten',
           isNew: true,
         },
         {
+          id: '5b1996378c98e652212c76b6',
           text: 'A1 Spanisch: Teilnehmerforum',
           last: 'Letzte Nachricht um 11:03',
           isNew: false,
         },
         {
+          id: '5b1996378c98e652212c76b6',
           text: 'Admingruppe',
           last: 'Letzte Nachricht um 11:03',
           isNew: false,
@@ -82,6 +85,12 @@ export default {
     padding-top: $padding-section;
   }
 
+  &__searchbar {
+    display: none;
+    @include break(tablet-l) {
+      display: block;
+    }
+  }
 
   &__courses {
     list-style: none;

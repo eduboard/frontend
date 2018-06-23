@@ -2,7 +2,10 @@
     <div class="controls">
       <div class="container controls__container">
         <div class="controls__container--large">
-          <h1 class="controls__logo">eduBoard</h1>
+          <div class="controls__logo">
+            <img class="controls__logo__image" src="../assets/skb.png" alt="">
+            <h1 class="controls__logo__title">eduBoard</h1>
+          </div>
           <button class="controls__menu-button" @click="toggleMenu">
             <span></span>
             <span></span>
@@ -135,14 +138,28 @@ export default {
 
 
   &__logo {
+    margin: 0;
+    padding: 0;
     font-size: 1.5rem;
     line-height: 1;
-    margin: 0.5rem 0 1.5rem 48px;
-
+    display: flex;
+    align-items: center;
 
     @include break(tablet-l) {
       font-size: $fs-x-large;
       margin: 0.5rem 0 $spacing-small 0;
+    }
+
+    &__image {
+      width: 69px;
+      margin: 0 0;
+    }
+
+    &__title {
+      margin: 0;
+      margin-left: 12px;
+      font-size: inherit;
+      line-height: inherit;
     }
   }
 

@@ -13,7 +13,7 @@
 
       <!-- Date label -->
       <p class="timeline__date">
-        {{$store.getters.dateStringFromTime(item.date)}}
+        {{(item.user || '') + $store.getters.dateStringFromTime(item.date)}}
       </p>
       <!-- Flexbox so that description and files are side by side -->
       <div class="timeline__flex">
@@ -60,7 +60,7 @@ export default {
 .timeline {
 
   &__container {
-    margin: 1rem 5rem 5rem;
+    margin: 1rem 1rem 1rem;
   }
 
   &__separator {
@@ -95,7 +95,7 @@ export default {
 
     &__item {
       align-items: center;
-      background: rgba($color-neutral, 0.3);
+      background: rgba($color-neutral, 0.7);
       border-radius: 3px;
       color: colorInvert($color-neutral);
       display: flex;
@@ -103,7 +103,7 @@ export default {
       font-weight: 500;
       line-height: 1;
       margin: 0.3rem;
-      padding: 0.4rem 0.5rem 0.5rem;
+      padding: 1rem 1rem 1rem;
       position: relative;
       transition: all $transition;
 

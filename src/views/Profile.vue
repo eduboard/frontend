@@ -90,7 +90,7 @@ export default {
 
     &__label {
       display: flex;
-      align-items: center; 
+      align-items: center;
       justify-content: center;
       position: absolute;
       top: 0;
