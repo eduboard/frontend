@@ -3,7 +3,7 @@
       <div class="container controls__container">
         <div class="controls__container--large">
           <h1 class="controls__logo">eduBoard</h1>
-          <button class="controls__menu-button">
+          <button class="controls__menu-button" @click="toggleMenu">
             <span></span>
             <span></span>
             <span></span>
@@ -69,6 +69,9 @@ export default {
   methods: {
     logout() {
       this.$api.logout();
+    },
+    toggleMenu() {
+      console.log('toggled menu');
     }
   },
 };
