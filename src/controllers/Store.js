@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+// eslint-disable-next-line
+import helpers from './helpers.js';
 
 Vue.use(Vuex);
 
@@ -8,7 +10,9 @@ const Store = new Vuex.Store({
     user: {},
     allCourses: [],
     courses: [],
-    users: []
+    users: [],
+    lastCourse: null,
+    lastForum: null
   },
   /**
    * Mutations are setters for the state store.
@@ -24,6 +28,16 @@ const Store = new Vuex.Store({
       if (name === 'user') {
         object.role = 'teacher';
       }
+
+      const mockMeetings = [
+        'Prokrastinieren,Montag,14-16,MA 700,Jong Shuo',
+        'Tagung,Mittwoch,08-12,HA 105,Mark Zucker',
+        'Besprechung,Dienstag,16-22,FH 301,Terminator',
+        'Training,Donnerstag,08-10,EN 345,Arnold',
+        'Cooles Lernen,Freitag,20-22,Zuhause,Du',
+        'Achwasauchimmer,Freitag,08-10,Raum 0,Ein Geist',
+      ];
+
       if (name === 'courses') {
         // eslint-disable-next-line
         for (const c of object) {
@@ -31,38 +45,45 @@ const Store = new Vuex.Store({
             {
               id: 'asd233wrfs3',
               date: Date.now(),
-              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque molestiae eaque tempore, amet facilis laudantium, officia repellat magni, porro sunt ipsa, fuga dicta quasi blanditiis ullam beatae. Saepe distinctio non nam molestiae mollitia, id ratione, adipisci odio facere aliquam expedita, accusantium fuga ipsa illo cumque. Dolores ea, assumenda. Tenetur, officia.',
+              message: 'Diese Woche üben wir uns in Prokrastination in dem wir schöne Bilder anschauen. Anbei findet Ihr zwei sehr ablenkende Bilder. Eure Aufgabe für diese Woche ist es, damit mindestens zwei Tage lang Zeit zu schinden. Das dafür benötigte Zusatzmaterial und die genaue Hausaufgabenangabe findet Ihr ebenfalls im Anhang. Ich wünsche weiterhin frohes Prokrastinieren. Erinnert euch daran ja nicht zu viel zu tun.',
               // pictures: ['happy.png', 'testAnswers.png'],
               pictures: ['https://picsum.﻿photos/450/125', 'https://picsum.﻿photos/600/500'],
-              files: ['abgabeTextTest.pdf'],
-            }, {
-              id: 'akl4tj3lk4ng',
-              date: Date.now(),
-              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laborum veritatis, dignissimos aliquam voluptatum doloribus beatae, consequuntur tempore in cum.',
-              files: ['untergangDerWelt.pdf'],
+              files: ['Hausaufgabe1.pdf', 'Zusatzmaterial.docx'],
             }, {
               id: 'asdfn34kl5j43',
-              date: Date.now(),
-              message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laborum praesentium? Suscipit culpa quas, aspernatur!',
+              date: Date.now() - 1000 * 3600 * 24 * 7,
+              message: 'Dieses mal habe ich für euch nur zwei kleine Leseausschnitte die ihr dafür verwenden könnt, euch möglichst wenig weiterzubilden. Bitte achtet darauf die Abschnitte nur zu überfliegen und so wenig wir möglich Information aufzunehmen.',
+              files: ['Leseausschnitt1.pdf', 'Leseausschnitt2.pdf'],
+            }, {
+              id: 'akl4tj3lk4ng',
               pictures: ['https://picsum.﻿photos/200/300', 'https://picsum.﻿photos/300/200'],
-              files: ['doom3.pdf', 'metal.pdf', 'mountain.pdf'].slice(0, counter),
-            }
-          ];
-          counter += 1;
+              message: 'In der ersten Lektion werden wir über die Bilder und Textanhänge gehen. Dies ist wichtig damit ihr einen Einblick die unfassbare Leere kriegt, die ihr bereits sein müsst einzugehen. Wenn es euch zu Langweilig ist, macht Ihr es genau richtig.',
+              files: ['Wörterbuch', 'VokabularListe.pdf'],
+              date: Date.now() - 1000 * 3600 * 24 * 14,
+            },
+          ].slice(0, 3 - counter);
+          c.meetings = mockMeetings.slice(counter, counter + 2).map(m =>
+            helpers.parseCalendarString(m));
           c.members = [
             {
               name: 'memberguy'
-            },
-            {
+            }, {
               name: 'other member'
             }
           ];
+          counter += 1;
         }
       }
     },
     // addCourse(state, object) {
     // state.courses.push(object)
     // }
+    setLastForum(state, id) {
+      state.lastForum = id;
+    },
+    setLastCourse(state, id) {
+      state.lastCourse = id;
+    }
   },
   /**
    * These are computed properties based on the current state.
@@ -90,7 +111,16 @@ const Store = new Vuex.Store({
     dateStringFromTime: () => (time) => {
       const date = new Date(time);
       return date.toDateString();
-    }
+    },
+    allMeetings: state => time =>
+      state.courses.reduce(
+        (acc, c) =>
+          acc.concat(c.meetings.map((m) => {
+            m.coursename = c.title;
+            return m;
+          })) || time
+        , []
+      )
   }
 });
 

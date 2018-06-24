@@ -3,7 +3,14 @@
 
     <main class="container dashboard">
 
-      <CourseList :courses="courses"></CourseList>
+      <div class="dashboard__main">
+
+        <Calendar class="dashboard__main__calendar"
+          :meetings="allMeetings" :showRooms="false"></Calendar>
+
+        <CourseList class="dashboard__main__courses"
+          :courses="courses"></CourseList>
+      </div>
 
       <aside class="dashboard__sidebar">
 
@@ -25,6 +32,8 @@
 import MessageSidebar from '../components/MessageSidebar.vue';
 import Searchbar from '../components/Searchbar.vue';
 import CourseList from '../components/CourseList.vue';
+import Calendar from '../components/Calendar.vue';
+
 
 export default {
   name: 'dashboard',
@@ -32,6 +41,7 @@ export default {
     MessageSidebar,
     Searchbar,
     CourseList,
+    Calendar
   },
   data() {
     return {
@@ -61,6 +71,9 @@ export default {
   computed: {
     courses() {
       return this.$store.getters.getCoursesFiltered(this.searchText);
+    },
+    allMeetings() {
+      return this.$store.getters.allMeetings(0);
     }
   }
 };
@@ -99,6 +112,30 @@ export default {
     width: 100%;
   }
 
+  &__main {
+
+    &__calendar {
+            // width: 100%;
+      height: 360px;
+      margin: 0 (-$padding-x) $spacing-large;
+      position: relative;
+
+
+      @include break(desktop) {
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      @include break(desktop, max) {
+        // display: none;
+      }
+
+    }
+
+    &__courses {
+
+    }
+  }
 
   &__course {
 

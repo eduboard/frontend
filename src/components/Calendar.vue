@@ -1,14 +1,27 @@
 <template>
 <div class="calendar">
-  <div v-for="(day, index) in getArray" :key="index" class="calendar__day">
-    <p class="calendar__titles">{{dayNames[index]}}</p>
-    <div v-for="(slot, index2) in day" :key="index2" class="calendar__slot activity">
-      WH C 335
 
-      <div class="calendar__slot__detail">
-        <strong>WH C 335</strong>
-        <p>Besprechung der Hausaufgaben</p>
-        <p>Tutor Boi</p>
+  <!-- The first entry will contain a time listing -->
+<!--   <div v-for="(slot, index3) in getArray[0]" :key="index3"
+    class="calendar__times calendar_slot">
+  </div> -->
+
+  <!-- Loop over days -->
+  <div v-for="(day, index) in getArray" :key="index" class="calendar__day">
+    <p class="calendar__titles">{{$helpers.dayNames[index]}}</p>
+
+    <!-- Loop over columns -->
+    <div v-for="(slot, index2) in day" :key="index2" class="calendar__slot"
+      :class="{ activity: slot.room }">
+
+      <!-- Displat the tile information if it exists -->
+      <div v-if="slot.room">
+        <p>{{!showRooms ? (slot.coursename || slot.room) : slot.room}}</p>
+        <div class="calendar__slot__detail">
+          <strong>{{slot.room}}</strong>
+          <p>{{slot.name}}</p>
+          <p>{{slot.person}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -19,35 +32,32 @@
 export default {
   name: 'calendar',
   props: {
-    // entries: Array
-  },
-  data() {
-    return {
-      dayNames: ['montag', 'dienstag', 'mittwoch', 'donnerstag', 'freitag'],
-      meetings: ['Cooles Lernen,Montag,14-16,MA 700',
-        'Besprechung,Dienstag,8-12,HA 105']
-    };
+    meetings: Array,
+    showRooms: Boolean
   },
   computed: {
     getArray() {
-      const dates = [];
-      for (let i = 0; i < this.meetings.length; i++) {
-        dates[i] = this.meetings[i].split(',');
-        dates[i][1] = this.dayNames.indexOf(dates[i][1].toLowerCase());
-        const times = dates[i][2].split('-');
-        dates[i][2] = `${times[0] - 8}-${times[1] - 8}`;
+      if (!this.meetings) return [];
+
+      // Generate a 5x7 Matrix
+      const columns = [];
+      for (let i = 0; i < 5; i++) {
+        const rows = [];
+        for (let j = 0; j < 7; j++) {
+          rows.push({});
+        }
+        columns.push(rows);
       }
 
-      const days = [];
-      for (let i = 0; i < 5; i++) {
-        const slots = [];
-        for (let j = 0; j < 7; j++) {
-          slots.push('');
+      // Place the entries at the right indexes
+      for (let i = 0; i < this.meetings.length; i++) {
+        for (let j = 0; j < this.meetings[i].size; j++) {
+          columns[this.meetings[i].column][this.meetings[i].row + j] =
+            this.meetings[i];
         }
-        days.push(slots);
       }
-      console.log(dates);
-      return days;
+
+      return columns;
     }
   }
 };

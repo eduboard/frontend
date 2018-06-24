@@ -11,9 +11,9 @@
         <!-- Left part of the course -->
         <div class="coursepage__maincontent">
           <p class="coursepage__maincontent__description">
-            {{course.description}}
-          </p>
-          <Calendar class="coursepage__maincontent__calendar"></Calendar>
+            {{course.description}}</p>
+          <Calendar class="coursepage__maincontent__calendar"
+            :meetings="course.meetings" :showRooms="true"></Calendar>
         </div>
 
         <!-- Right part of the course -->
@@ -22,9 +22,6 @@
           <!-- Teacher Settings -->
           <div class="coursepage__sidebar__buttons"
           v-if="$store.state.user.role === 'teacher'">
-            <button class="coursepage__sidebar__buttons-button">
-              Beitrag hinzufügen
-            </button>
             <button class="coursepage__sidebar__buttons-button">
               Forum Hinzufügen
             </button>
@@ -44,6 +41,9 @@
         </div>
       </div>
 
+      <!-- Timeline Post Input -->
+      <!-- <PostInput class="coursepage__postinput" :target=course></PostInput> -->
+
       <!-- The timeline -->
       <Timeline class="coursepage__timeline" :items=course.entries></Timeline>
     </div>
@@ -54,12 +54,14 @@
 import MessageSidebar from '../components/MessageSidebar.vue';
 import Timeline from '../components/Timeline.vue';
 import Calendar from '../components/Calendar.vue';
+import PostInput from '../components/PostInput.vue';
 
 export default {
   name: 'course',
   components: {
     MessageSidebar,
     Timeline,
+    PostInput,
     Calendar
   },
   computed: {
