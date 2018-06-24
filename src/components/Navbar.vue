@@ -5,6 +5,7 @@
           <div class="controls__logo">
             <img class="controls__logo__image" src="../assets/skb.png" alt="">
             <h1 class="controls__logo__title">eduBoard</h1>
+            <a href="/"></a>
           </div>
           <button class="controls__menu-button" @click="toggleMenu">
             <span></span>
@@ -89,8 +90,14 @@ export default {
 .controls {
   background: $color-ui linear-gradient(115deg, $color-ui, $color-ui-h);
   color: $color-base;
-  padding: $spacing-small 0 0;
+  padding: $spacing-small 0;
   position: relative;
+
+
+  @include break(tablet-l) {
+    padding-bottom: 0;
+  }
+
 
   &__container {
     display: flex;
@@ -144,6 +151,8 @@ export default {
     line-height: 1;
     display: flex;
     align-items: center;
+    margin-left: 3rem;
+    position: relative;
 
     @include break(tablet-l) {
       font-size: $fs-x-large;
@@ -160,6 +169,14 @@ export default {
       margin-left: 12px;
       font-size: inherit;
       line-height: inherit;
+    }
+
+    a {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
   }
 

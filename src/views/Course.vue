@@ -104,23 +104,33 @@ export default {
   }
 
   &__start {
-    display: flex;
-    justify-content: space-between;
+    @include break(desktop) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   &__maincontent {
-    flex: 0 0 60%;
+    flex: 0 0 65%;
 
     &__description {
 
     }
 
     &__calendar {
-      width: 900px;
+      // width: 100%;
       height: 360px;
+      margin: 0 (-$padding-x) $spacing-large;
+      position: relative;
+
+
+      @include break(desktop) {
+        margin-left: 0;
+        margin-right: 0;
+      }
 
       @include break(desktop, max) {
-        display: none;
+        // display: none;
       }
 
     }
@@ -128,6 +138,35 @@ export default {
 
   &__sidebar {
     flex: 0 0 25%;
+
+
+    @include break(tablet) {
+      @include break(desktop, max) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+
+        &__buttons,
+        ul {
+          flex: 0 0 48%;
+        }
+
+        ul {
+          order: 1;
+        }
+
+        &__buttons {
+          order: 2;
+        }
+
+        h2 {
+          order: 3;
+          width: 100%;
+        }
+      }
+    }
+
 
     &__buttons {
       margin-bottom: 2rem;

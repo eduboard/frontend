@@ -33,18 +33,18 @@ const Store = new Vuex.Store({
               date: Date.now(),
               message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque molestiae eaque tempore, amet facilis laudantium, officia repellat magni, porro sunt ipsa, fuga dicta quasi blanditiis ullam beatae. Saepe distinctio non nam molestiae mollitia, id ratione, adipisci odio facere aliquam expedita, accusantium fuga ipsa illo cumque. Dolores ea, assumenda. Tenetur, officia.',
               // pictures: ['happy.png', 'testAnswers.png'],
+              pictures: ['https://picsum.﻿photos/450/125', 'https://picsum.﻿photos/600/500'],
               files: ['abgabeTextTest.pdf'],
             }, {
               id: 'akl4tj3lk4ng',
               date: Date.now(),
               message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus laborum veritatis, dignissimos aliquam voluptatum doloribus beatae, consequuntur tempore in cum.',
-              pictures: ['testAnswers.png'],
               files: ['untergangDerWelt.pdf'],
             }, {
               id: 'asdfn34kl5j43',
               date: Date.now(),
               message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, laborum praesentium? Suscipit culpa quas, aspernatur!',
-              pictures: ['happy.png', 'testAnswers.png'],
+              pictures: ['https://picsum.﻿photos/200/300', 'https://picsum.﻿photos/300/200'],
               files: ['doom3.pdf', 'metal.pdf', 'mountain.pdf'].slice(0, counter),
             }
           ];

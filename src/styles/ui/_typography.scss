@@ -1,0 +1,18 @@
+
+a {
+  color: $color-ui;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  font-size: $fs-large;
+
+  @include break(tablet) {
+    font-size: $fs-x-large;
+  }
+}

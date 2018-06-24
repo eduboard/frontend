@@ -1,6 +1,6 @@
 <template>
   <div class="container ">
-    <div id="PictureWrapper" class="container -narrow auth profile__picture">
+    <div id="PictureWrapper" class="container -narrow profile__picture">
       <div class="controls__user__image profile__picture__content">
         <p v-if="$store.state.user.email">
         {{$store.state.user.name.slice(0,1) + $store.state.user.surname.slice(0,1)}}

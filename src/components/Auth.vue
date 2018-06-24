@@ -94,13 +94,14 @@ export default {
 
 <style lang="scss">
 
-@import "../styles/utility";
-@import "../styles/ui/container";
-@import "../styles/settings";
+  @import "../styles/utility";
+  @import "../styles/settings";
 
-.auth {
-  margin-top: 8rem;
-  padding-bottom: 10rem;
-}
+  .auth {
+    &.container {
+      margin-top: 8rem;
+      padding-bottom: 10rem;
+    }
+  }
 
 </style>

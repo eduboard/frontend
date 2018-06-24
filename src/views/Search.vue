@@ -53,38 +53,38 @@ export default {
 .coursesearch {
 
   &__search {
-    font-size: 2rem;
-    margin: 2rem;
+    font-size: 1.25rem;
+    margin: 2rem 1rem;
+
+    @include break(laptop) {
+      font-size: 2rem;
+    }
   }
 
   &__courses {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
     list-style: none;
     margin: 0;
     padding: 0;
-
-    @include break(tablet-l) {
-      justify-content: space-between;
-    }
   }
 
   &__course {
-    min-width: 420px;
-    margin: 0 $spacing-x-small ($spacing-x-small * 2);
+    // min-width: 420px;
+    flex: 0 0 100%;
 
     @include break(mobile) {
-      max-width: calc(#{(100% / 2)} - #{$spacing-x-small * 2});
+      flex-basis: calc(#{(100% / 2)} - #{$spacing-x-small * 2});
+      margin: 0 $spacing-x-small ($spacing-x-small * 2);
     }
 
     @include break(tablet-l) {
       margin: 0 $spacing-base ($spacing-base * 2);
-      max-width: calc(#{(100% / 3)} - #{$spacing-base * 2});
+      flex-basis: calc(#{(100% / 3)} - #{$spacing-base * 2});
     }
 
     @include break(desktop) {
-      max-width: calc(#{(100% / 4)} - #{$spacing-base * 2});
+      flex-basis: calc(#{(100% / 4)} - #{$spacing-base * 2});
     }
   }
 }

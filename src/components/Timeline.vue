@@ -5,9 +5,6 @@
   <div v-for="(item, index) in items" :key="index"
   class="timeline__item">
 
-    <!-- Separator Line -->
-    <div class="timeline__separator"></div>
-
     <!-- Contains content so that it can have separate margin -->
     <div class="timeline__container">
 
@@ -60,20 +57,33 @@ export default {
 .timeline {
 
   &__container {
-    margin: 1rem 1rem 1rem;
-  }
+    margin: 1rem 0;
 
-  &__separator {
-    border-top: 2px solid grey;
+    @include break(tablet) {
+      margin: 1rem;
+    }
   }
 
   &__date {
     font-weight: 700;
   }
 
+
+  &__item {
+    border-top: 1px solid $color-soft;
+    padding: $spacing-base 0;
+  }
+
   &__flex {
-    display: flex;
-    justify-content: space-between;
+
+    @include break(tablet-l) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  p {
+    margin-top: 0;
   }
 
   &__description {
@@ -84,7 +94,7 @@ export default {
 
 
     list-style: none;
-    margin: 1rem 0 0 -0.5rem;
+    margin: 0 0 0 -0.5rem;
     padding: 0;
     flex: 0 0 20%;
     display: flex;
@@ -120,8 +130,8 @@ export default {
   &__images {
 
     &__item {
-      border: 1px solid red;
-      max-width: 100%;
+      height: 150px;
+      margin-right: 1rem;
     }
   }
 }

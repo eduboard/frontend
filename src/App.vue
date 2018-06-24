@@ -27,8 +27,8 @@ export default {
 
 @import "styles/reset";
 @import "styles/utility";
-@import "styles/ui/container";
 @import "styles/settings";
+@import "styles/ui/_ui";
 
 html {
   font-size: $fs-document;
@@ -46,7 +46,7 @@ input {
   background: transparent;
   border: 0;
   border-bottom: 1px solid $color-text;
-  color: $color-text;
+  color: black;
   outline: 0;
 
   &::placeholder {
@@ -202,10 +202,20 @@ h2 {
     @extend %absolute;
   }
 
+  &__content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+  }
+
+
+  p {
+    margin-bottom: 1.25rem;
+  }
 
   .button {
     display: block;
-    margin-top: 1.25rem;
+    margin-top: auto;
     width: 100%;
   }
 }
