@@ -21,10 +21,12 @@ auth.auth = function (action, params) {
   this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
       res.getterName = 'user';
+      console.log('setting', res);
       Store.commit('set', res);
-      router.push('/dashboard');
+      this.getSelf();
       this.get('courses');
       this.get('allCourses');
+      router.push('/dashboard');
     }
   }, params);
 };
@@ -73,6 +75,9 @@ auth.getSelf = function (callback = null) {
  */
 auth.get = function (name) {
   console.log(`Called GET ${name}`);
+  if (name !== 'user' && !Store.state.user.id) {
+    return setTimeout(() => auth.get(name), 1000);
+  }
   const context = {
     userId: Store.state.user.id
   };

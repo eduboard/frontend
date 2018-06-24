@@ -51,7 +51,7 @@ const Store = new Vuex.Store({
               files: ['Hausaufgabe1.pdf', 'Zusatzmaterial.docx'],
             }, {
               id: 'asdfn34kl5j43',
-              date: Date.now() - 1000 * 3600 * 24 * 7,
+              date: Date.now() - 1000 * 3600 * 24 * 9,
               message: 'Dieses mal habe ich für euch nur zwei kleine Leseausschnitte die ihr dafür verwenden könnt, euch möglichst wenig weiterzubilden. Bitte achtet darauf die Abschnitte nur zu überfliegen und so wenig wir möglich Information aufzunehmen.',
               files: ['Leseausschnitt1.pdf', 'Leseausschnitt2.pdf'],
             }, {
@@ -59,10 +59,10 @@ const Store = new Vuex.Store({
               pictures: ['https://picsum.﻿photos/200/300', 'https://picsum.﻿photos/300/200'],
               message: 'In der ersten Lektion werden wir über die Bilder und Textanhänge gehen. Dies ist wichtig damit ihr einen Einblick die unfassbare Leere kriegt, die ihr bereits sein müsst einzugehen. Wenn es euch zu Langweilig ist, macht Ihr es genau richtig.',
               files: ['Wörterbuch', 'VokabularListe.pdf'],
-              date: Date.now() - 1000 * 3600 * 24 * 14,
+              date: Date.now() - 1000 * 3600 * 24 * 20,
             },
           ].slice(0, 3 - counter);
-          c.meetings = mockMeetings.slice(counter, counter + 1).map(m =>
+          c.meetings = mockMeetings.slice(counter, counter + 2).map(m =>
             helpers.parseCalendarString(m));
           c.members = [
             {
