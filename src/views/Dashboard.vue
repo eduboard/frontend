@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     courses() {
-      return this.$store.getters.getCoursesFiltered(this.searchText);
+      return this.$store.getters.getPrivateCoursesFiltered(this.searchText);
     },
     allMeetings() {
       return this.$store.getters.allMeetings(0);

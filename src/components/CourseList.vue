@@ -28,8 +28,6 @@ export default {
   name: 'courselist',
   props: {
     courses: Array
-  },
-  computed: {
   }
 };
 </script>

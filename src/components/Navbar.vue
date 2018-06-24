@@ -23,14 +23,12 @@
               to="/search">Kurssuche</router-link>
 
               <!-- Static Text Pages -->
-              <router-link tag="li"
-              class="controls__navigation__item"
-              to="/landing">News</router-link>
               <router-link tag="li" class="controls__navigation__item"
-              to="/imprint">Imprint</router-link>
+              to="/info">News & Info</router-link>
 
               <!-- Tabbed Courses/Forums -->
-              <router-link v-if="$store.state.lastCourse.id"
+              <router-link v-if="$store.state.lastCourse.id
+                && $store.state.user.id"
               tag="li" class="controls__navigation__item"
               :to="`/courses/${$store.state.lastCourse.id}`">
               {{$store.state.lastCourse.title}}

@@ -5,9 +5,10 @@ const authUrl = 'https://eduboard.io/api';
 const apiUrl = 'https://eduboard.io/api/v1';
 
 const endpoints = {
+  user: () => '/me',
   courses: ctx => `/users/${ctx.userId}/courses`,
   allCourses: () => '/courses',
-  users: () => '/users'
+  userList: () => '/users'
 };
 
 const auth = {};
@@ -20,9 +21,7 @@ auth.auth = function (action, params) {
   console.log(`Called ${action}`);
   this.request('POST', `${authUrl}/${action}`, (res) => {
     if (res.success !== false) {
-      res.getterName = 'user';
-      console.log('setting', res);
-      Store.commit('set', res);
+      Store.commit('setUser', res);
       this.getSelf();
       this.get('courses');
       this.get('allCourses');
@@ -37,12 +36,8 @@ auth.auth = function (action, params) {
 auth.logout = function () {
   console.log('Called logout');
   this.request('POST', `${authUrl}/logout`, () => {
-    console.log('Logout successful');
     router.push('/landing');
-    Store.commit('set', {
-      getterName: 'user'
-    });
-    document.cookie = 'sessionID=deleted; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    Store.commit('setUser', {});
   });
 };
 
@@ -56,8 +51,7 @@ auth.getSelf = function (callback = null) {
   const userExisted = Boolean(Store.state.user.mail);
   this.request('GET', `${apiUrl}/me`, (res) => {
     if (res.success !== false) {
-      res.getterName = 'user';
-      Store.commit('set', res);
+      Store.commit('setUser', res);
       if (!userExisted) {
         this.get('courses');
         this.get('allCourses');
@@ -71,25 +65,22 @@ auth.getSelf = function (callback = null) {
 
 /**
  * Updates the local state with the remote state via GET response.
- * Will inject dynamic data with evil.
  */
 auth.get = function (name) {
   console.log(`Called GET ${name}`);
   if (name !== 'user' && !Store.state.user.id) {
-    return setTimeout(() => auth.get(name), 1000);
+    return setTimeout(() => this.get(name), 3000);
   }
   const context = {
     userId: Store.state.user.id
   };
   const endpoint = `${apiUrl}${endpoints[name](context)}`;
   this.request('GET', endpoint, (res) => {
-    if (res.success !== false) {
-      res.getterName = name;
-      Store.commit('set', res);
-    } else {
-      // TODO display failed message
-      console.log(`Failed getting ${name}`);
+    if (res.success === false) {
+      return console.log(`Failed getting ${name}`);
     }
+    name = name.charAt(0).toUpperCase() + name.slice(1);
+    Store.commit(`set${name}`, res);
   });
 };
 
@@ -98,7 +89,7 @@ auth.get = function (name) {
  * Catched non-JSON responses. Handling of success/failure is left to the callback.
  *
  * 401 responses will log the user out and redirect to login screen.
- * TODO 500 responses will display a message to the client.
+ * 500 responses will display a console message.
  */
 auth.request = function (method, url, callback, body) {
   const req = new XMLHttpRequest();
@@ -115,12 +106,11 @@ auth.request = function (method, url, callback, body) {
 
       // If Unauthorized (401) redirect to login
       } else if (this.status === 401 || this.status === 403) {
-        Store.commit('set', { getterName: 'user' });
+        Store.commit('setUser', {});
         router.push('/login');
 
       // If Server Fault (500) display error
       } else if (this.status === 500) {
-        // TODO Display warning message to client
         console.log('Server error');
 
       // Else if failed otherwise

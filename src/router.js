@@ -4,7 +4,6 @@ import Course from './views/Course.vue';
 import Dashboard from './views/Dashboard.vue';
 import Forum from './views/Forum.vue';
 import Impressum from './views/Impressum.vue';
-import Landing from './views/Landing.vue';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import Profile from './views/Profile.vue';
@@ -16,12 +15,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/landing',
-    },
-    {
-      path: '/landing',
-      name: 'landing',
-      component: Landing,
+      redirect: '/dashboard',
     },
     {
       path: '/login',
@@ -49,8 +43,8 @@ export default new Router({
       component: Profile,
     },
     {
-      path: '/imprint',
-      name: 'imprint',
+      path: '/info',
+      name: 'info',
       component: Impressum,
     },
     {

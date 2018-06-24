@@ -1,7 +1,7 @@
 <template>
 <div class="calendar">
 
-  <!-- The first entry will contain a time listing -->
+  <!-- Time Listing -->
   <div class="calendar__day -small">
     <div v-for="(slot, index3) in 7" :key="index3 + 5000"
       class="calendar__times calendar__slot">
@@ -11,24 +11,26 @@
 
   <!-- Loop over days -->
   <div v-for="(day, index) in getArray" :key="index" class="calendar__day">
+
+    <!-- Display the weekday -->
     <p class="calendar__titles">{{$helpers.dayNames[index]}}</p>
 
     <!-- Loop over columns -->
     <div v-for="(slot, index2) in day" :key="index2" class="calendar__slot"
       :class="{ activity: slot.room }">
 
-      <!-- Displat the tile information if it exists -->
-      <div v-if="slot.room">
-        <router-link
-          :to="slot.coursename && `/courses/${findCourseIdByName(slot.coursename)}`">
-          {{!showRooms ? (slot.coursename || slot.room) : slot.room}}
-        </router-link>
+      <!-- Display the tile information if it exists -->
+      <router-link v-if="slot.room"
+      :to="slot.coursename && `/courses/${findCourseIdByName(slot.coursename)}`">
+
+        <!-- Hover information -->
+        {{!showRooms ? (slot.coursename || slot.room) : slot.room}}
         <div class="calendar__slot__detail">
           <strong>{{slot.room}}</strong>
           <p>{{slot.name}}</p>
           <p>{{slot.person}}</p>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </div>

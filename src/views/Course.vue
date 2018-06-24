@@ -36,7 +36,7 @@
           ></MessageSidebar>
 
           <h2 class="dashboard__sidebar__count">
-            5 Nutzer in diesem Kurs
+            {{course.members && course.members.length}} Nutzer in diesem Kurs
           </h2>
         </div>
       </div>

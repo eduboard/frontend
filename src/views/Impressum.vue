@@ -2,7 +2,6 @@
   <div>
     <div class="container">
       <h1 class="">Impressum</h1>
-      <h2>Eduboard</h2>
       <p>
         Verantwortliche: <br>
         Levi Geiser <br>
@@ -12,8 +11,9 @@
         Phillip Stagnet <br>
         Anne Schmidt <br>
         Leonard Becker <br>
-        Peter Wielander
+        Peter Wielander <br>
       </p>
+      <p>Kontakt: mittgfu<span style="display:none" aria-hidden="true">nono</span>@gmail.com</p>
       <p>
         Alle Rechte liegen bei den Erstellern der Website. Diese  distanziert sich
         hiermit ausdrücklich von allen
@@ -25,6 +25,10 @@
         sondern dienen lediglich der
         Session-Organisation. <br> Sämtliche gespeicherten Daten der Nutzer werden
         nicht an Dritte weitergegeben.
+      </p>
+      <h1 class="">Datenschutzerklärung</h1>
+      <p>
+         Haben keine.
       </p>
     </div>
   </div>

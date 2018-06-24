@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// eslint-disable-next-line
-import helpers from './helpers.js';
+// import helpers from './helpers.js';
+import mock from './mock.js';
+// import Api from './Api.js';
 
 Vue.use(Vuex);
 
@@ -19,72 +20,35 @@ const Store = new Vuex.Store({
    * Evaluation and side-effects will be run here.
    */
   mutations: {
-    set(state, object) {
-      const name = object.getterName;
-      delete object.getterName;
-      state[name] = object;
-
-      let counter = 0;
-      if (name === 'user') {
-        object.role = 'teacher';
+    setUser(state, user) {
+      if (user.id) {
+        user.role = 'teacher';
       }
-
-      const mockMeetings = [
-        'Prokrastinieren,Montag,14-16,MA 700,Jong Shuo',
-        'Tagung,Mittwoch,08-12,HA 105,Mark Zucker',
-        'Besprechung,Dienstag,16-22,FH 301,Terminator',
-        'Training,Donnerstag,08-10,EN 345,Arnold',
-        'Cooles Lernen,Freitag,20-22,Zuhause,Du',
-        'Achwasauchimmer,Freitag,08-10,Raum 0,Ein Geist',
-      ];
-
-      if (name === 'courses') {
-        // eslint-disable-next-line
-        for (const c of object) {
-          c.entries = [
-            {
-              id: 'asd233wrfs3',
-              date: Date.now(),
-              message: 'Diese Woche üben wir uns in Prokrastination in dem wir schöne Bilder anschauen. Anbei findet Ihr zwei sehr ablenkende Bilder. Eure Aufgabe für diese Woche ist es, damit mindestens zwei Tage lang Zeit zu schinden. Das dafür benötigte Zusatzmaterial und die genaue Hausaufgabenangabe findet Ihr ebenfalls im Anhang. Ich wünsche weiterhin frohes Prokrastinieren. Erinnert euch daran ja nicht zu viel zu tun.',
-              // pictures: ['happy.png', 'testAnswers.png'],
-              pictures: ['https://picsum.﻿photos/450/125', 'https://picsum.﻿photos/600/500'],
-              files: ['Hausaufgabe1.pdf', 'Zusatzmaterial.docx'],
-            }, {
-              id: 'asdfn34kl5j43',
-              date: Date.now() - 1000 * 3600 * 24 * 9,
-              message: 'Dieses mal habe ich für euch nur zwei kleine Leseausschnitte die ihr dafür verwenden könnt, euch möglichst wenig weiterzubilden. Bitte achtet darauf die Abschnitte nur zu überfliegen und so wenig wir möglich Information aufzunehmen.',
-              files: ['Leseausschnitt1.pdf', 'Leseausschnitt2.pdf'],
-            }, {
-              id: 'akl4tj3lk4ng',
-              pictures: ['https://picsum.﻿photos/200/300', 'https://picsum.﻿photos/300/200'],
-              message: 'In der ersten Lektion werden wir über die Bilder und Textanhänge gehen. Dies ist wichtig damit ihr einen Einblick die unfassbare Leere kriegt, die ihr bereits sein müsst einzugehen. Wenn es euch zu Langweilig ist, macht Ihr es genau richtig.',
-              files: ['Wörterbuch', 'VokabularListe.pdf'],
-              date: Date.now() - 1000 * 3600 * 24 * 20,
-            },
-          ].slice(0, 3 - counter);
-          c.meetings = mockMeetings.slice(counter, counter + 2).map(m =>
-            helpers.parseCalendarString(m));
-          c.members = [
-            {
-              name: 'memberguy'
-            }, {
-              name: 'other member'
-            }
-          ];
-          counter += 1;
-        }
+      state.user = user;
+    },
+    setCourses(state, courses) {
+      // state.courses = courses;
+      if (courses) {
+        state.courses = mock.courses;
       }
     },
-    // addCourse(state, object) {
-    // state.courses.push(object)
-    // }
+    setAllCourses(state, courses) {
+      state.allCourses = courses;
+    },
+    setUserList(state, users) {
+      state.users = users;
+    },
     setLastForumById(state, id) {
       state.lastForum = id;
     },
     setLastCourseById(state, id) {
       state.lastCourse = state.courses.find(c => c.id === id) || {};
+    },
+    addCourse(state, course) {
+      state.courses.push(course);
     }
   },
+
   /**
    * These are computed properties based on the current state.
    * They may have no side effect and may not change the state.
