@@ -36,7 +36,7 @@ auth.auth = function (action, params) {
 auth.logout = function () {
   console.log('Called logout');
   this.request('POST', `${authUrl}/logout`, () => {
-    router.push('/landing');
+    router.push('/info');
     Store.commit('setUser', {});
   });
 };
