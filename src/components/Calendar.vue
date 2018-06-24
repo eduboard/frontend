@@ -2,9 +2,12 @@
 <div class="calendar">
 
   <!-- The first entry will contain a time listing -->
-<!--   <div v-for="(slot, index3) in getArray[0]" :key="index3"
-    class="calendar__times calendar_slot">
-  </div> -->
+  <div class="calendar__day -small">
+    <div v-for="(slot, index3) in 7" :key="index3 + 5000"
+      class="calendar__times calendar__slot">
+      {{index3 * 2 + 8}}
+    </div>
+  </div>
 
   <!-- Loop over days -->
   <div v-for="(day, index) in getArray" :key="index" class="calendar__day">
@@ -16,7 +19,10 @@
 
       <!-- Displat the tile information if it exists -->
       <div v-if="slot.room">
-        <p>{{!showRooms ? (slot.coursename || slot.room) : slot.room}}</p>
+        <router-link
+          :to="slot.coursename && `/courses/${findCourseIdByName(slot.coursename)}`">
+          {{!showRooms ? (slot.coursename || slot.room) : slot.room}}
+        </router-link>
         <div class="calendar__slot__detail">
           <strong>{{slot.room}}</strong>
           <p>{{slot.name}}</p>
@@ -34,6 +40,12 @@ export default {
   props: {
     meetings: Array,
     showRooms: Boolean
+  },
+  methods: {
+    findCourseIdByName(name) {
+      const course = this.$store.state.courses.find(c => c.title === name);
+      return course && course.id || '#';
+    }
   },
   computed: {
     getArray() {
@@ -102,6 +114,11 @@ export default {
     flex-direction: column;
     margin-right: -1px;
     width: 100%;
+    justify-content: flex-end;
+
+    &.-small {
+      width: auto;
+    }
   }
 
   &__slot {
@@ -141,7 +158,7 @@ export default {
 
 
     &__detail {
-      background: $color-bg;
+      background: $color-base;
       @include elevate(10);
       display: none;
       top: 50%;
@@ -177,6 +194,20 @@ export default {
 
     &:hover &__detail {
       display: block;
+    }
+  }
+
+  &__times {
+    color: $color-text;
+    font-weight: 700;
+    display: flex;
+    justify-content: flex-end;
+    border: 0;
+    margin-right: 1px;
+    padding-right: 0.5em;
+
+    &:hover {
+      z-index: initial;
     }
   }
 

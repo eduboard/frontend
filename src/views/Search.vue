@@ -13,7 +13,7 @@
 
           <div class="card__content">
             <h3>{{course.title}}</h3>
-            <p>{{course.description}}</p>
+            <p>{{course.description.slice(0, 100)}}</p>
             <button class="button">Anmelden</button>
           </div>
         </li>

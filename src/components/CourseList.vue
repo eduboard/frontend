@@ -6,7 +6,7 @@
 
     <div class="card__content">
       <h3>{{c.title}}<span>{{c.messages}}</span></h3>
-      <p>{{c.description.slice(0, 200)}}</p>
+      <p>{{c.description.slice(0, 160)}}</p>
       <strong>{{c.last}}</strong>
     </div>
 

@@ -11,8 +11,8 @@ const Store = new Vuex.Store({
     allCourses: [],
     courses: [],
     users: [],
-    lastCourse: null,
-    lastForum: null
+    lastCourse: {},
+    lastForum: {}
   },
   /**
    * Mutations are setters for the state store.
@@ -62,7 +62,7 @@ const Store = new Vuex.Store({
               date: Date.now() - 1000 * 3600 * 24 * 14,
             },
           ].slice(0, 3 - counter);
-          c.meetings = mockMeetings.slice(counter, counter + 2).map(m =>
+          c.meetings = mockMeetings.slice(counter, counter + 1).map(m =>
             helpers.parseCalendarString(m));
           c.members = [
             {
@@ -78,11 +78,11 @@ const Store = new Vuex.Store({
     // addCourse(state, object) {
     // state.courses.push(object)
     // }
-    setLastForum(state, id) {
+    setLastForumById(state, id) {
       state.lastForum = id;
     },
-    setLastCourse(state, id) {
-      state.lastCourse = id;
+    setLastCourseById(state, id) {
+      state.lastCourse = state.courses.find(c => c.id === id) || {};
     }
   },
   /**
@@ -107,10 +107,6 @@ const Store = new Vuex.Store({
           acc.concat(e.files)
         , []
       );
-    },
-    dateStringFromTime: () => (time) => {
-      const date = new Date(time);
-      return date.toDateString();
     },
     allMeetings: state => time =>
       state.courses.reduce(

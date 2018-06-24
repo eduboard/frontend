@@ -18,19 +18,34 @@
               <router-link v-if="$store.state.user.email"
               tag="li" class="controls__navigation__item"
               to="/dashboard">Dashboard</router-link>
-              <router-link tag="li"
-              class="controls__navigation__item"
-              to="/landing">News</router-link>
               <router-link v-if="$store.state.user.email"
               tag="li" class="controls__navigation__item"
               to="/search">Kurssuche</router-link>
+
+              <!-- Static Text Pages -->
+              <router-link tag="li"
+              class="controls__navigation__item"
+              to="/landing">News</router-link>
               <router-link tag="li" class="controls__navigation__item"
               to="/imprint">Imprint</router-link>
+
+              <!-- Tabbed Courses/Forums -->
+              <router-link v-if="$store.state.lastCourse.id"
+              tag="li" class="controls__navigation__item"
+              :to="`/courses/${$store.state.lastCourse.id}`">
+              {{$store.state.lastCourse.title}}
+              </router-link>
+<!--               <router-link v-if="$store.state.lastForum"
+              tag="li" class="controls__navigation__item"
+              :to="`/forums/${$store.state.lastForum}`">{{}}
+              </router-link> -->
             </ul>
           </nav>
         </div>
 
         <div class="container controls__container--small">
+
+          <!-- Username and Picture -->
           <div v-if="$store.state.user.email" class="controls__user">
             <span class="controls__user__name">
             {{$store.state.user.name + ' ' + $store.state.user.surname}}</span>
@@ -41,15 +56,20 @@
 
           <nav class="controls__navigation">
             <ul>
+              <!-- Admin/Lehrer Tabs -->
               <router-link v-if="$store.state.user.role === 'teacher'" tag="li"
               class="controls__navigation__item"
               to="/course-management">Kursverwaltung</router-link>
               <router-link v-if="$store.state.user.role === 'admin'" tag="li"
               class="controls__navigation__item"
               to="/user-management">Nutzerverwaltung</router-link>
+
+              <!-- User Tabs -->
               <router-link v-if="$store.state.user.email"
               tag="li" class="controls__navigation__item"
               to="/profile">Profil</router-link>
+
+              <!-- Authentication -->
               <li v-if="$store.state.user.email" class="controls__navigation__item"
               @click="logout()">Logout</li>
               <router-link v-if="!$store.state.user.email"

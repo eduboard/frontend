@@ -17,4 +17,9 @@ h.parseCalendarString = function (str) {
   };
 };
 
+h.dateStringFromTime = (time) => {
+  const date = new Date(time);
+  return date.toDateString();
+};
+
 export default h;

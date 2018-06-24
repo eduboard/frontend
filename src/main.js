@@ -48,8 +48,8 @@ const restricted = [
 ];
 const onlyLoggedOut = ['login', 'register'];
 const saveLast = {
-  forum: 'setLastForum',
-  course: 'setLastCourse'
+  forum: 'setLastForumById',
+  course: 'setLastCourseById'
 };
 
 // Enforce route restrictions
@@ -67,4 +67,5 @@ router.afterEach((to) => {
   if (saveLast[to.name]) {
     Store.commit(saveLast[to.name], to.params.id);
   }
+  window.scrollTo(0, 0);
 });

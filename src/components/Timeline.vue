@@ -10,7 +10,7 @@
 
       <!-- Date label -->
       <p class="timeline__date">
-        {{(item.user || '') + $store.getters.dateStringFromTime(item.date)}}
+        {{(item.user || '') + $helpers.dateStringFromTime(item.date)}}
       </p>
       <!-- Flexbox so that description and files are side by side -->
       <div class="timeline__flex">
