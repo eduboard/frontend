@@ -1,19 +1,24 @@
 <template>
   <div class="postinput">
-    <div class="postinput__topbar">
-      Neuen Post erstellen
+    <h2 class="postinput__topbar">Neuen Post erstellen</h2>
+
+    <div class="">
+      <input class="postinput__title" type="text" placeholder="Titel des Posts...">
     </div>
 
-    <div class="postinput__inputs">
-      <input class="postinput__inputs__post" v-model="inputModel" type="text"
-        placeholder="Verfasse hier deinen Post...">
+    <div class="">
+      <textarea class="postinput__textarea" v-model="inputModel" rows="8"
+        cols="60" placeholder="Verfasse hier deinen Post..."></textarea>
     </div>
+
+    <div class="postinput__files"></div>
+
+    <div class="postinput__images"></div>
 
     <div class="postinput__controls">
-      <button class="postinput__controls-button">Save</button>
-      <button class="postinput__controls-button">New</button>
-      <button class="postinput__controls-button">Add Files</button>
-      <button class="postinput__controls-button">Add Pictures</button>
+      <button class="postinput__controls-button">Absenden</button>
+      <button class="postinput__controls-button">Dateien hinzufügen</button>
+      <button class="postinput__controls-button">Bilder hinzufügen</button>
     </div>
   </div>
 </template>
@@ -40,17 +45,33 @@ export default {
 
 .postinput {
 
-  background-color: gray;
+  padding: 2rem 4rem;
+  margin-top: 2rem;
+  background-color: white;
+  @include elevate(2);
 
-  &__topbar {
+  &:hover {
 
   }
 
-  &__inputs {
+  &__topbar {
 
-    &__post {
+    // text-align: center;
 
-    }
+  }
+
+  &__title {
+    // border-bottom: 1px solid grey;
+  }
+
+  &__textarea {
+
+    margin-top: 2rem;
+    border: 0;
+    background-color: inherit;
+    outline: none;
+    resize: none;
+
   }
 
   &__controls {

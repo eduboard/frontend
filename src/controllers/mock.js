@@ -26,6 +26,22 @@ mock.users = [
   },
 ];
 
+mock.forums = [
+  {
+    id: '501',
+    title: 'Teilnehmerforum',
+    entries: []
+  }, {
+    id: '501',
+    title: 'Tennisforum',
+    entries: []
+  }, {
+    id: '551',
+    title: 'Adminforum',
+    entries: []
+  },
+];
+
 mock.meetings = [
   'Besprechung,Montag,14-16,MA 700,Dmitry Chevko',
   'Seminar,Mittwoch,08-12,HA 105,Dmitry Chevko',
@@ -97,21 +113,21 @@ mock.entries = [
 
 mock.courses = [
   {
-    id: '5b2f8acdecc545012ef9c4d1',
+    id: '661',
     title: 'Мне нравится есть хлеб',
     description: 'В этом курсе мы обсудим разные типы русского хлеба. Лорем ипсум долор сит амет, ехерци номинави еу вел, цум волумус перципит дефинитионес еу. Еос неморе цопиосае детерруиссет ид. Мовет детрахит молестиае ан хис, ут алиа еффициантур инструцтиор вим. Цум дебет тритани еа. Не пробо сусципит диссентиас сед, магна ассентиор но мел, меа елигенди цонтентионес интерпретарис ет. Не либер толлит импедит хис, ферри иусто волуптариа иус ут.',
     members: [mock.users[0], mock.users[1]],
     meetings: mock.meetings.slice(0, 2).map(m => helpers.parseCalendarString(m)),
     entries: mock.entries.slice(0, 3)
   }, {
-    id: '5b2f8acdecc545012ef9c4d2',
+    id: '662',
     title: 'Prokrastinieren für Fortschgeschrittene',
     description: 'Dies ist ein Kurs für Fortschgeschrittene. Anfänger besuchen bitte die Kurse Prokrastination für Anfänger 1 & 2. Hier lernen Sie nicht nur zu prokrastinieren, sonder auch wie sie absolut gar nichts machen, aber sich trotzdem einreden Sie hätten was sinnvolles gemacht. Diese Fähigkeit ist für jeden Menschen absolut unabdingbar. Vertrauen Sie mir.',
     members: [mock.users[2], mock.users[3]],
     meetings: mock.meetings.slice(2, 4).map(m => helpers.parseCalendarString(m)),
     entries: mock.entries.slice(3, 6)
   }, {
-    id: '5b2f8acdecc545012ef9c4d3',
+    id: '663',
     title: 'A1 Gutes Deutsch',
     description: 'Eyy digga hier lernsta wie du mal so rischtich Deutsch sprischt. Musst du nur gucken und lernen von mir, ich masch dich da fix flot in de Kenntnisse die du wissen musst, ey.',
     members: mock.users,

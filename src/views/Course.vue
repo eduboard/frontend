@@ -42,7 +42,7 @@
       </div>
 
       <!-- Timeline Post Input -->
-      <!-- <PostInput class="coursepage__postinput" :target=course></PostInput> -->
+      <PostInput class="coursepage__postinput" :target=course></PostInput>
 
       <!-- The timeline -->
       <Timeline class="coursepage__timeline" :items=course.entries></Timeline>
@@ -192,6 +192,11 @@ export default {
   &__timeline {
     margin-top: 5rem;
     margin-bottom: 10rem;
+  }
+
+  &__postinput {
+    margin-right: auto;
+    margin-left: auto;
   }
 
 }
