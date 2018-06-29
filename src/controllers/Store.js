@@ -44,8 +44,16 @@ const Store = new Vuex.Store({
     setLastCourseById(state, id) {
       state.lastCourse = state.courses.find(c => c.id === id) || {};
     },
-    addCourse(state, course) {
-      state.courses.push(course);
+    createPost(state, post) {
+      const course = state.courses.find(c => c.id === post.courseId);
+      if (course) {
+        course.entries.unshift(post);
+      } else {
+        console.log(`Could not create post on ${post.courseId}`);
+      }
+    },
+    createCourse(state, course) {
+      state.courses.unshift(course);
     }
   },
 

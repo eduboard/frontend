@@ -1,13 +1,14 @@
 <template>
   <div class="postinput">
     <h2 class="postinput__topbar">Neuen Post erstellen</h2>
-
+<!--
     <div class="">
-      <input class="postinput__title" type="text" placeholder="Titel des Posts...">
+      <input class="postinput__title" type="text" placeholder="Titel des Posts..."
+        v-model="title">
     </div>
-
+-->
     <div class="">
-      <textarea class="postinput__textarea" v-model="inputModel" rows="8"
+      <textarea class="postinput__textarea" v-model="message" rows="8"
         cols="60" placeholder="Verfasse hier deinen Post..."></textarea>
     </div>
 
@@ -16,7 +17,9 @@
     <div class="postinput__images"></div>
 
     <div class="postinput__controls">
-      <button class="postinput__controls-button">Absenden</button>
+      <button class="postinput__controls-button"
+        @click="createPost">
+      Absenden</button>
       <button class="postinput__controls-button">Dateien hinzufügen</button>
       <button class="postinput__controls-button">Bilder hinzufügen</button>
     </div>
@@ -31,8 +34,14 @@ export default {
   },
   data() {
     return {
-      inputModel: ''
+      title: '',
+      message: ''
     };
+  },
+  methods: {
+    createPost() {
+      this.$api.createPost({ message: this.message, courseId: '661', date: new Date() });
+    }
   }
 };
 </script>

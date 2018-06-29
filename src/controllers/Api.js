@@ -8,7 +8,9 @@ const endpoints = {
   user: () => '/me',
   courses: ctx => `/users/${ctx.userId}/courses`,
   allCourses: () => '/courses',
-  userList: () => '/users'
+  userList: () => '/users',
+  createPost: ctx => `/courses/${ctx.courseId}/entries`,
+  createCourse: () => '/courses',
 };
 
 const auth = {};
@@ -82,6 +84,21 @@ auth.get = function (name) {
     name = name.charAt(0).toUpperCase() + name.slice(1);
     Store.commit(`set${name}`, res);
   });
+};
+
+
+/**
+ * Updates the local state with the remote state via GET response.
+ */
+auth.createPost = function (object) {
+  console.log(`Called createPost ${object}`);
+  const endpoint = `${apiUrl}${endpoints.createPost(object)}`;
+  this.request('POST', endpoint, (res) => {
+    Store.commit('createPost', object);
+    if (res.success === false) {
+      return console.log('Failed creating post');
+    }
+  }, object);
 };
 
 /*
