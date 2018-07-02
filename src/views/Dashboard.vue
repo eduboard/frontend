@@ -73,7 +73,7 @@ export default {
       return this.$store.getters.getPrivateCoursesFiltered(this.searchText);
     },
     allMeetings() {
-      return this.$store.getters.allMeetings(0);
+      return this.$store.getters.allMeetings();
     }
   }
 };

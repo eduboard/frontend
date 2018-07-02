@@ -14,6 +14,7 @@ module.exports = {
     'consistent-return': 'off',
     'comma-dangle': 'off',
     'no-plusplus': 'off',
+    'no-restricted-syntax': 'off',
 		'no-param-reassign': 'off',
     'func-names': 'off',
     'no-mixed-operators': 'off',

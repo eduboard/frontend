@@ -19,25 +19,25 @@
         <!-- Right part of the course -->
         <div class="coursepage__sidebar">
 
-          <!-- Teacher Settings -->
-          <div class="coursepage__sidebar__buttons"
-          v-if="$store.state.user.role === 'teacher'">
-            <button class="coursepage__sidebar__buttons-button">
-              Forum Hinzufügen
-            </button>
-            <button class="coursepage__sidebar__buttons-button">
-              Nutzer Verwalten
-            </button>
-          </div>
 
           <!-- Forums -->
           <MessageSidebar class="dashboard__sidebar__forums"
             :chats="chats"
           ></MessageSidebar>
 
+          <!-- Number of enrolled students -->
           <h2 class="dashboard__sidebar__count">
-            {{course.members && course.members.length}} Nutzer in diesem Kurs
+            {{course.members && course.members.length || 0}}
+            Nutzer in diesem Kurs
           </h2>
+
+          <!-- Teacher Settings -->
+          <div class="coursepage__sidebar__buttons"
+          v-if="['teacher', 'admin'].includes($store.state.user.role)">
+            <router-link tag="button"
+            class="coursepage__sidebar__buttons-button"
+            to="/admin">Kurs verwalten</router-link>
+          </div>
         </div>
       </div>
 
@@ -186,6 +186,9 @@ export default {
     &__count {
       margin-top: 1rem;
       text-align: center;
+      align-content: center;
+      margin-left: auto;
+      width: 100%;
     }
   }
 
@@ -197,6 +200,7 @@ export default {
   &__postinput {
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 1rem;
   }
 
 }

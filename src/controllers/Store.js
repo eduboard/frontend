@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 // import helpers from './helpers.js';
-import mock from './mock.js';
+// import mock from './mock.js';
 // import Api from './Api.js';
 
 Vue.use(Vuex);
@@ -22,15 +22,15 @@ const Store = new Vuex.Store({
   mutations: {
     setUser(state, user) {
       if (user.id) {
-        user.role = 'teacher';
+        user.role = 'admin';
       }
       state.user = user;
     },
     setCourses(state, courses) {
-      // state.courses = courses;
-      if (courses) {
-        state.courses = mock.courses;
-      }
+      state.courses = courses;
+      // if (courses) {
+      // state.courses = mock.courses;
+      // }
     },
     setAllCourses(state, courses) {
       state.allCourses = courses;
@@ -54,6 +54,16 @@ const Store = new Vuex.Store({
     },
     createCourse(state, course) {
       state.courses.unshift(course);
+    },
+    createForum() {
+    },
+    deleteUser() {
+    },
+    deleteCourse() {
+    },
+    deleteEntry() {
+    },
+    deleteForum() {
     }
   },
 
@@ -73,22 +83,28 @@ const Store = new Vuex.Store({
     // Get the file list of a course (useful for dashboard)
     getCourseFiles: state => (id) => {
       const course = state.courses.find(cor => cor.id === id);
-      if (!course) return [];
+      if (!course || !course.entries) return [];
       return course.entries.reduce(
         (acc, e) =>
           acc.concat(e.files)
         , []
       );
     },
-    allMeetings: state => time =>
-      state.courses.reduce(
-        (acc, c) =>
-          acc.concat(c.meetings.map((m) => {
-            m.coursename = c.title;
+    // allMeetings: state => (time) => {
+    allMeetings: state => () => {
+      const ret = [];
+      // Loop over all courses and extract meetings
+      for (const course of state.courses) {
+        if (course.meetings) {
+          ret.concat(course.meetings.map((m) => {
+            // Attach the coursename too
+            m.coursename = course.title || '';
             return m;
-          })) || time
-        , []
-      )
+          }));
+        }
+      }
+      return ret;
+    }
   }
 });
 

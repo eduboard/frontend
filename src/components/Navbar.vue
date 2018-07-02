@@ -54,13 +54,10 @@
 
           <nav class="controls__navigation">
             <ul>
-              <!-- Admin/Lehrer Tabs -->
-              <router-link v-if="$store.state.user.role === 'teacher'" tag="li"
-              class="controls__navigation__item"
-              to="/course-management">Kursverwaltung</router-link>
+              <!-- Admin Tab -->
               <router-link v-if="$store.state.user.role === 'admin'" tag="li"
               class="controls__navigation__item"
-              to="/user-management">Nutzerverwaltung</router-link>
+              to="/admin">Verwaltung</router-link>
 
               <!-- User Tabs -->
               <router-link v-if="$store.state.user.email"
