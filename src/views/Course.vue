@@ -41,6 +41,9 @@
         </div>
       </div>
 
+      <!-- Polytinder -->
+      <Polytinder class="coursepage__polytinder"></Polytinder>
+
       <!-- Timeline Post Input -->
       <PostInput class="coursepage__postinput" :target=course></PostInput>
 
@@ -55,6 +58,7 @@ import MessageSidebar from '../components/MessageSidebar.vue';
 import Timeline from '../components/Timeline.vue';
 import Calendar from '../components/Calendar.vue';
 import PostInput from '../components/PostInput.vue';
+import Polytinder from '../components/Polytinder.vue';
 
 export default {
   name: 'course',
@@ -62,7 +66,8 @@ export default {
     MessageSidebar,
     Timeline,
     PostInput,
-    Calendar
+    Calendar,
+    Polytinder,
   },
   computed: {
     course() {

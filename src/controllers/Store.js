@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 // import helpers from './helpers.js';
-// import mock from './mock.js';
+import mock from './mock.js';
 // import Api from './Api.js';
 
 Vue.use(Vuex);
@@ -11,7 +11,29 @@ const Store = new Vuex.Store({
     user: {},
     allCourses: [],
     courses: [],
-    users: [],
+    users: [
+      {
+        email: 'best@test.com',
+        name: 'Franz',
+        surname: 'Boiler',
+        id: '5b2e9a35382d33000158aa28'
+      }, {
+        email: 'habadaba@test.com',
+        name: 'Mark',
+        surname: 'Sichler',
+        id: '5b2e9a35382d33000158aa29'
+      }, {
+        email: 'tennis@test.com',
+        name: 'Tennis',
+        surname: 'Arm',
+        id: '5b2e9a35382d33000158aa30'
+      }, {
+        email: 'never@test.com',
+        name: 'Never',
+        surname: 'GonnaGiveYouUp',
+        id: '5b2e9a35382d33000158aa31'
+      },
+    ],
     lastCourse: {},
     lastForum: {}
   },
@@ -36,7 +58,9 @@ const Store = new Vuex.Store({
       state.allCourses = courses;
     },
     setUserList(state, users) {
-      state.users = users;
+      if (users) {
+        state.users = mock.users;
+      }
     },
     setLastForumById(state, id) {
       state.lastForum = id;
@@ -90,6 +114,13 @@ const Store = new Vuex.Store({
         , []
       );
     },
+    // Participants of a course filtered by a searchString
+    // TODO: Noch gibt die Funktion einfach alle user zurück
+    getParticipantsOfCourseFiltered: state => string =>
+      state.users.filter(user =>
+        (new RegExp(string.toLowerCase())).test(user.name.toLowerCase())),
+    allUsers: state => () =>
+      state.users,
     // allMeetings: state => (time) => {
     allMeetings: state => () => {
       const ret = [];
