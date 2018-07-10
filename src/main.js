@@ -44,7 +44,8 @@ const restricted = [
   'dashboard',
   'profile',
   'manage',
-  'forum'
+  'forum',
+  'admin'
 ];
 const onlyLoggedOut = ['login', 'register'];
 const saveLast = {

@@ -11,7 +11,29 @@ const Store = new Vuex.Store({
     user: {},
     allCourses: [],
     courses: [],
-    users: [],
+    users: [
+      {
+        email: 'best@test.com',
+        name: 'Franz',
+        surname: 'Boiler',
+        id: '5b2e9a35382d33000158aa28'
+      }, {
+        email: 'habadaba@test.com',
+        name: 'Mark',
+        surname: 'Sichler',
+        id: '5b2e9a35382d33000158aa29'
+      }, {
+        email: 'tennis@test.com',
+        name: 'Tennis',
+        surname: 'Arm',
+        id: '5b2e9a35382d33000158aa30'
+      }, {
+        email: 'never@test.com',
+        name: 'Never',
+        surname: 'GonnaGiveYouUp',
+        id: '5b2e9a35382d33000158aa31'
+      },
+    ],
     lastCourse: {},
     lastForum: {}
   },
@@ -22,21 +44,23 @@ const Store = new Vuex.Store({
   mutations: {
     setUser(state, user) {
       if (user.id) {
-        user.role = 'teacher';
+        user.role = 'admin';
       }
       state.user = user;
     },
     setCourses(state, courses) {
-      // state.courses = courses;
-      if (courses) {
-        state.courses = mock.courses;
-      }
+      state.courses = courses;
+      // if (courses) {
+      // state.courses = mock.courses;
+      // }
     },
     setAllCourses(state, courses) {
       state.allCourses = courses;
     },
     setUserList(state, users) {
-      state.users = users;
+      if (users) {
+        state.users = mock.users;
+      }
     },
     setLastForumById(state, id) {
       state.lastForum = id;
@@ -44,8 +68,26 @@ const Store = new Vuex.Store({
     setLastCourseById(state, id) {
       state.lastCourse = state.courses.find(c => c.id === id) || {};
     },
-    addCourse(state, course) {
-      state.courses.push(course);
+    createPost(state, post) {
+      const course = state.courses.find(c => c.id === post.courseId);
+      if (course) {
+        course.entries.unshift(post);
+      } else {
+        console.log(`Could not create post on ${post.courseId}`);
+      }
+    },
+    createCourse(state, course) {
+      state.courses.unshift(course);
+    },
+    createForum() {
+    },
+    deleteUser() {
+    },
+    deleteCourse() {
+    },
+    deleteEntry() {
+    },
+    deleteForum() {
     }
   },
 
@@ -65,22 +107,35 @@ const Store = new Vuex.Store({
     // Get the file list of a course (useful for dashboard)
     getCourseFiles: state => (id) => {
       const course = state.courses.find(cor => cor.id === id);
-      if (!course) return [];
+      if (!course || !course.entries) return [];
       return course.entries.reduce(
         (acc, e) =>
           acc.concat(e.files)
         , []
       );
     },
-    allMeetings: state => time =>
-      state.courses.reduce(
-        (acc, c) =>
-          acc.concat(c.meetings.map((m) => {
-            m.coursename = c.title;
+    // Participants of a course filtered by a searchString
+    // TODO: Noch gibt die Funktion einfach alle user zurück
+    getParticipantsOfCourseFiltered: state => string =>
+      state.users.filter(user =>
+        (new RegExp(string.toLowerCase())).test(user.name.toLowerCase())),
+    allUsers: state => () =>
+      state.users,
+    // allMeetings: state => (time) => {
+    allMeetings: state => () => {
+      const ret = [];
+      // Loop over all courses and extract meetings
+      for (const course of state.courses) {
+        if (course.meetings) {
+          ret.concat(course.meetings.map((m) => {
+            // Attach the coursename too
+            m.coursename = course.title || '';
             return m;
-          })) || time
-        , []
-      )
+          }));
+        }
+      }
+      return ret;
+    }
   }
 });
 

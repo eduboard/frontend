@@ -21,7 +21,7 @@
 
       <!-- Display the tile information if it exists -->
       <router-link v-if="slot.room"
-      :to="slot.coursename && `/courses/${findCourseIdByName(slot.coursename)}`">
+      :to="`/courses/${findCourseIdByName(slot.coursename)}`">
 
         <!-- Hover information -->
         {{!showRooms ? (slot.coursename || slot.room) : slot.room}}
@@ -46,13 +46,11 @@ export default {
   methods: {
     findCourseIdByName(name) {
       const course = this.$store.state.courses.find(c => c.title === name);
-      return course && course.id || '#';
+      return (course && course.id) || '#';
     }
   },
   computed: {
     getArray() {
-      if (!this.meetings) return [];
-
       // Generate a 5x7 Matrix
       const columns = [];
       for (let i = 0; i < 5; i++) {
@@ -62,6 +60,9 @@ export default {
         }
         columns.push(rows);
       }
+
+      // Stop if there is nothing to assign
+      if (!this.meetings) return columns;
 
       // Place the entries at the right indexes
       for (let i = 0; i < this.meetings.length; i++) {

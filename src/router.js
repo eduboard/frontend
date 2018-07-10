@@ -1,13 +1,19 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Course from './views/Course.vue';
+
 import Dashboard from './views/Dashboard.vue';
-import Forum from './views/Forum.vue';
+import Search from './views/Search.vue';
 import Impressum from './views/Impressum.vue';
+
+import Course from './views/Course.vue';
+import Forum from './views/Forum.vue';
+import Manage from './views/Manage.vue';
+
+import Admin from './views/Admin.vue';
+
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
 import Profile from './views/Profile.vue';
-import Search from './views/Search.vue';
 
 Vue.use(Router);
 
@@ -56,6 +62,16 @@ export default new Router({
       path: '/forums/:id',
       name: 'forum',
       component: Forum,
+    },
+    {
+      path: '/courses/:id/manage',
+      name: 'manage',
+      component: Manage,
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
     },
   ],
 });
