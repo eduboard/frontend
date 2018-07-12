@@ -14,7 +14,7 @@
       <li v-for="(file, index) in $store.getters.getCourseFiles(c.id)"
       :key="index" class="dashboard__course__file"> {{file}}
         <!-- <a :href="file.link"></a> -->
-        <a href=""></a>
+        <a href=""></a>#/admin
       </li>
     </ul>
 

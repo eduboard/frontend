@@ -14,7 +14,8 @@
           <div class="card__content">
             <h3>{{course.title}}</h3>
             <p>{{course.description.slice(0, 100)}}</p>
-            <button class="button">Anmelden</button>
+            <router-link :to="`/courses/${course.id}`"><button
+          class="button">Anmelden</button></router-link>
           </div>
         </li>
       </ul>

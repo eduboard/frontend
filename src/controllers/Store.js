@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 // import helpers from './helpers.js';
-import mock from './mock.js';
+// import mock from './mock.js';
 // import Api from './Api.js';
 
 Vue.use(Vuex);
@@ -11,29 +11,7 @@ const Store = new Vuex.Store({
     user: {},
     allCourses: [],
     courses: [],
-    users: [
-      {
-        email: 'best@test.com',
-        name: 'Franz',
-        surname: 'Boiler',
-        id: '5b2e9a35382d33000158aa28'
-      }, {
-        email: 'habadaba@test.com',
-        name: 'Mark',
-        surname: 'Sichler',
-        id: '5b2e9a35382d33000158aa29'
-      }, {
-        email: 'tennis@test.com',
-        name: 'Tennis',
-        surname: 'Arm',
-        id: '5b2e9a35382d33000158aa30'
-      }, {
-        email: 'never@test.com',
-        name: 'Never',
-        surname: 'GonnaGiveYouUp',
-        id: '5b2e9a35382d33000158aa31'
-      },
-    ],
+    userList: [],
     lastCourse: {},
     lastForum: {}
   },
@@ -58,9 +36,7 @@ const Store = new Vuex.Store({
       state.allCourses = courses;
     },
     setUserList(state, users) {
-      if (users) {
-        state.users = mock.users;
-      }
+      state.userList = users;
     },
     setLastForumById(state, id) {
       state.lastForum = id;
@@ -100,6 +76,10 @@ const Store = new Vuex.Store({
     getCoursesFiltered: state => string =>
       state.allCourses.filter(course =>
         (new RegExp(string.toLowerCase())).test(course.title.toLowerCase())),
+    // UserList filtered by a searchString
+    getUsersFiltered: state => string =>
+      state.userList.filter(user =>
+        (new RegExp(string.toLowerCase())).test(user.email.toLowerCase())),
     // Courses filtered by a searchString
     getPrivateCoursesFiltered: state => string =>
       state.courses.filter(course =>

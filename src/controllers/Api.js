@@ -27,6 +27,7 @@ auth.auth = function (action, params) {
       this.getSelf();
       this.get('courses');
       this.get('allCourses');
+      this.get('userList');
       router.push('/dashboard');
     }
   }, params);
@@ -57,6 +58,7 @@ auth.getSelf = function (callback = null) {
       if (!userExisted) {
         this.get('courses');
         this.get('allCourses');
+        this.get('userList');
       }
       if (callback) callback(true);
     } else if (callback) {
