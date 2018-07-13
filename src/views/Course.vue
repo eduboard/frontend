@@ -13,7 +13,7 @@
           <p class="coursepage__maincontent__description">
             {{course.description}}</p>
           <Calendar class="coursepage__maincontent__calendar"
-            :meetings="course.meetings" :showRooms="true"></Calendar>
+            :meetings="course.schedules" :showRooms="true"></Calendar>
         </div>
 
         <!-- Right part of the course -->

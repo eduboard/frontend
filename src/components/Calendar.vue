@@ -66,9 +66,12 @@ export default {
 
       // Place the entries at the right indexes
       for (let i = 0; i < this.meetings.length; i++) {
+        const stuff = this.meetings[i];
+        stuff.size = 2;
         for (let j = 0; j < this.meetings[i].size; j++) {
-          columns[this.meetings[i].column][this.meetings[i].row + j] =
-            this.meetings[i];
+          // columns[this.meetings[i].day][this.meetings[i].row + j] =
+          columns[this.meetings[i].day][1 + j] =
+            stuff;
         }
       }
 

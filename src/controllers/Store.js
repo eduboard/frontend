@@ -97,21 +97,22 @@ const Store = new Vuex.Store({
     // Participants of a course filtered by a searchString
     // TODO: Noch gibt die Funktion einfach alle user zurück
     getParticipantsOfCourseFiltered: state => string =>
-      state.users.filter(user =>
+      (state.users || []).filter(user =>
         (new RegExp(string.toLowerCase())).test(user.name.toLowerCase())),
     allUsers: state => () =>
       state.users,
     // allMeetings: state => (time) => {
     allMeetings: state => () => {
-      const ret = [];
+      let ret = [];
       // Loop over all courses and extract meetings
       for (const course of state.courses) {
-        if (course.meetings) {
-          ret.concat(course.meetings.map((m) => {
+        if (course.schedules) {
+          ret = ret.concat(course.schedules.map((m) => {
             // Attach the coursename too
             m.coursename = course.title || '';
             return m;
           }));
+          console.log('ret', ret);
         }
       }
       return ret;
