@@ -40,7 +40,11 @@ export default {
   },
   methods: {
     createPost() {
-      this.$api.createPost({ message: this.message, courseId: '661', date: new Date() });
+      this.$api.createPost({
+        message: this.message,
+        courseId: this.target.id,
+        date: new Date()
+      });
     }
   }
 };
